@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Tailor Work Details</title>
+</head>
+<body>
+    <h1>Work Details for {{ delivery_date }}</h1>
+
+    <h2>Assigned Works</h2>
+    <ul>
+        {% for tailor, count in assigned_works.items %}
+            <li>{{ tailor }}: {{ count }}</li>
+        {% endfor %}
+    </ul>
+
+    <h2>Pending Works</h2>
+    <ul>
+        {% for tailor, count in pending_works.items %}
+            <li>{{ tailor }}: {{ count }}</li>
+        {% endfor %}
+    </ul>
+
+    <h2>Upcoming Works</h2>
+    <ul>
+        {% for tailor, count in upcoming_works.items %}
+            <li>{{ tailor }}: {{ count }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

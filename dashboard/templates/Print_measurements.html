@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Bill</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        img {
+            width: 150px;
+        }
+
+        h3, h4, h5 {
+            text-align: center;
+        }
+
+        .container {
+            margin: 20px;
+        }
+
+        .div1 {
+            border: 1px solid #000;
+            padding: 10px;
+            margin-bottom: 20px;
+        }
+
+        .div1 h4 {
+            margin: 5px 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        table, th, td {
+            border: 1px solid #000;
+        }
+
+        th, td {
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        .tb1 {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        .tb1, .tb1 th, .tb1 td {
+            border: 1px solid #000;
+        }
+
+        .tb1 th, .tb1 td {
+            padding: 8px;
+            text-align: left;
+        }
+
+        .tb1 th {
+            background-color: #f2f2f2;
+        }
+
+        span {
+            font-size: 12px;
+        }
+    </style>
+</head>
+
+<body>
+<header>
+    <img src="https://i.postimg.cc/hvSB6N1c/amana-logo.png" alt="">
+    <h3>HAYY SOUQ, SHARURAH, SAUDI ARABIA</h3>
+    <h4>PHONE NO: 00966507328132, EMAIL ID: <a href="mailto:amanathobe@gmail.com">amanathobe@gmail.com</a></h4>
+    <h4>WEB SITE: <a href="http://www.amanathobe.com">www.amanathobe.com </a> VAT NUMBER/TIM : 310601281900003</h4>
+    <h5>CUSTOMER BILL</h5>
+</header>
+
+<div class="container">
+
+    <div class="div1">
+        {% for customer in order %}
+        <h4>CUSTOMER NAME: {{ customer.customer_id.name }}</h4>
+        <h4>CUSTOMER NUMBER: {{ customer.customer_id.mobile }}</h4>
+        <div class="v1"></div>
+        <h4>BILL NUMBER: {{ customer.bill_number }}</h4>
+        <h4>ORDER DATE: {{ customer.order_date }}</h4>
+        <h4>DELIVERY DATE: {{ customer.delivery_date }}</h4>
+        {% endfor %}
+    </div>
+
+    <table>
+
+
+        <tr>
+            <th>SI NO</th>
+            <th>ITEMS</th>
+            <th>QTY</th>
+            <th>UNIT PRICE</th>
+            <th>NET TOTAL</th>
+        </tr>
+        {% for customer in item %}
+        <tr>
+            <td>{{forloop.counter}}</td>
+            <td>{{ customer.item_name}}</td>
+            <td>{{ customer.item_quantity }}</td>
+            <td>{{ customer.item_price }}</td>
+            <td>{{ customer.total_price }}</td>
+        </tr>
+
+{% endfor %}
+
+    </table>
+
+    <table class="tb1">
+        <tr>
+            <td>TOTAL : {{ customer.total }}</td>
+            <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+        </tr>
+        <tr>
+            <td>DISCOUNT : {{ customer.discount }}</td>
+            <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+        </tr>
+        <tr>
+            <td>ADVANCE : {{ customer.discount }}</td>
+            <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+        </tr>
+        <tr>
+            <td>GROSS TOTAL : {{ customer.gross_total }}</td>
+            <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+        </tr>
+        <tr>
+            <td>VAT TOTAL : <span>( 15% of Gross Total )</span> {{ customer.vat_total }}</td>
+            <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+        </tr>
+        <tr>
+            <td><b>NET TOTAL : </b><span> ( Gross Total + VAT )</span> {{ customer.net_total }}</td>
+            <td>&nbsp;</td>
+        </tr>
+    </table>
+
+</div>
+</body>
+
+</html>

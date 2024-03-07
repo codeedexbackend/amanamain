@@ -1,0 +1,17 @@
+{% extends 'dashboard.html' %}
+{% block content %}
+ <div class="form-group">
+                <b><label for="tailor">Tailors:</label></b>
+                <select class="form-control" style="border: 1px solid #ccc;" name="tailor">
+                    <option>Select Tailor</option>
+                    {% for entry in tailor_works %}
+                        <option value="{{ entry.tailor.id }}">
+                            <div style="display: flex; justify-content: space-between; align-items: center;">
+                                <span style="font-weight: bold;"><b>{{ entry.tailor.tailor }}-</b></span>
+                                <span>Assigned: {{ entry.assigned_works }}, Pending: {{ entry.pending_works }}</span>
+                            </div>
+                        </option>
+                    {% endfor %}
+                </select>
+            </div>
+{% endblock %}

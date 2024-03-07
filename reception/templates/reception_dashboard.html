@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Amana Reception</title>
+    <link rel="stylesheet" href="{% static 'vendors/typicons/typicons.css' %}">
+    <link rel="stylesheet" href="{% static 'vendors/css/vendor.bundle.base.css' %}">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <link rel="stylesheet" href="{% static 'css/vertical-layout-light/style.css' %}">
+    <link rel="shortcut icon" href="{% static 'images/logo-removebg-preview.png' %}"/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+</head>
+
+<body>
+
+
+<div class="container-scroller">
+    <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+        <div class="navbar-brand-wrapper d-flex justify-content-center" style="background-color:white;">
+            <div class="navbar-brand-inner-wrapper d-flex justify-content-between align-items-center w-100">
+                <a class="navbar-brand brand-logo" href="{% url 'reception_indexpage' %}"><img
+                        src="{% static 'images/logo.png' %}"
+                        alt="logo"/></a>
+                <a class="navbar-brand brand-logo-mini" href="{% url 'reception_indexpage' %}"><img
+                        src="{% static 'images/logo-removebg-preview.png' %}" alt="logo"/></a>
+                <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize"
+                        style="background-color:grey;">
+                    <span class="typcn typcn-th-menu"></span>
+                </button>
+            </div>
+        </div>
+        <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end" style="background-color:white;">
+            <ul class="navbar-nav mr-lg-2">
+                <li class="nav-item nav-profile dropdown">
+                    <a class="nav-link" href="{% url 'reception_indexpage' %}">
+                        <!--              <img src="{% static 'images/faces/face5.jpg' %}" alt="profile"/>-->
+                        RECEPTION
+                    </a>
+                </li>
+                <li class="nav-item nav-user-status dropdown">
+                    <p class="mb-0"></p>
+                </li>
+            </ul>
+            <ul class="navbar-nav navbar-nav-right">
+                <li class="nav-item nav-date dropdown">
+                    <a class="nav-link d-flex justify-content-center align-items-center" href="javascript:;">
+                        <h6 class="date mb-0" id="currentDateTime"></h6>
+                        <i class="typcn typcn-calendar"></i>
+                    </a>
+                </li>
+                <li class="nav-item dropdown mr-0">
+                    <a class="nav-link btn-danger text-white d-flex align-items-center justify-content-center"
+                       onclick="confirmLogout()" href="{% url 'LogoutReception' %}">
+                        <i class="typcn typcn-eject text-primary"></i>Logout</a>
+                </li>
+                <script>
+                    function confirmLogout() {
+                        if (confirm("Are you sure you want to logout?")) {
+                            document.getElementById("logoutForm").submit();
+                    }
+                </script>
+                <script>
+                    function updateDateTime() {
+                        var currentDate = new Date();
+                        var options = { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric', hour12: true };
+                        var formattedDate = currentDate.toLocaleString('en-US', options);
+                        document.getElementById('currentDateTime').textContent = formattedDate;
+                    }
+
+                    // Update the date initially
+                    updateDateTime();
+
+                    // Update the date every second
+                    setInterval(updateDateTime, 1000);
+                </script>
+
+            </ul>
+            <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button"
+                    data-toggle="offcanvas">
+                <span class="typcn typcn-th-menu"></span>
+            </button>
+        </div>
+    </nav>
+    <!-- partial -->
+    <nav class="navbar-breadcrumb col-xl-12 col-12 d-flex flex-row p-0">
+
+        <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
+            <ul class="navbar-nav mr-lg-2">
+                <li class="nav-item ml-0">
+                    <h4 class="mb-0">Dashboard</h4>
+                </li>
+            </ul>
+
+            <ul class="navbar-nav navbar-nav-right">
+                <li class="nav-item nav-search mr-0">
+                    <form action="{% url 'search_mobile_recption' %}" method="get" onsubmit="return validateSearch()">
+                        <div class="input-group">
+                            <input type="text" class="form-control" name="q" id="searchInput" placeholder="Search..."
+                                   aria-label="search"
+                                   aria-describedby="search">
+                            <div class="input-group-prepend">
+                                <button class="input-group-text" type="submit" id="search">
+                                    <i class="typcn typcn-zoom"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container-fluid page-body-wrapper">
+        <!-- partial:partials/_sidebar.html -->
+        <nav class="sidebar sidebar-offcanvas" id="sidebar">
+            <ul class="nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'reception_indexpage' %}">
+                        <i class="typcn typcn-device-desktop menu-icon"></i>
+                        <span class="menu-title">HOME</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false"
+                       aria-controls="ui-basic">
+                        <i class="typcn typcn-document-text menu-icon"></i>
+                        <span class="menu-title">Customer</span>
+                        <i class="menu-arrow"></i>
+                    </a>
+                    <div class="collapse" id="ui-basic">
+                        <ul class="nav flex-column sub-menu">
+                            <li class="nav-item"><a class="nav-link" href="{% url 'createcustomer_reception' %}">Add
+                                Customer</a></li>
+                            <li class="nav-item"><a class="nav-link" href="{% url 'customer_details_recption' %}">Customer
+                                Details</a></li>
+                            <li class="nav-item"><a class="nav-link" href="{% url 'order_details_reception' %}">Order
+                                Details</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="collapse" href="#error" aria-expanded="false"
+                       aria-controls="error">
+                        <i class="typcn typcn-globe-outline menu-icon"></i>
+                        <span class="menu-title">Tailors</span>
+                        <i class="menu-arrow"></i>
+                    </a>
+                    <div class="collapse" id="error">
+                        <ul class="nav flex-column sub-menu">
+
+                            <li class="nav-item"><a class="nav-link" href="{% url 'tailor_details_recption' %}"> View
+                                Tailors </a>
+
+                            </li>
+                            <li class="nav-item"><a class="nav-link" href="{% url 'select_dates_recption' %}"> Tailor
+                                Appointments</a></li>
+                        </ul>
+                    </div>
+                </li>
+
+            </ul>
+        </nav>
+        <!-- partial -->
+
+
+        <div class="main-panel">
+
+
+            {% block content %}
+
+            <div class="content-wrapper">
+                <div class="row">
+                    <div class="col-md-4 grid-margin stretch-card">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="d-flex align-items-center justify-content-between justify-content-md-center justify-content-xl-between flex-wrap mb-4">
+                                    <div>
+                                        <p class="mb-2 text-md-center text-lg-left">Total Customers</p>
+                                        <h1 class="mb-0">{{ total_customers }}</h1>
+                                    </div>
+                                    <i class="typcn typcn-briefcase icon-xl text-secondary"></i>
+                                </div>
+                                <canvas id="expense-chart" height="80"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 grid-margin stretch-card">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="d-flex align-items-center justify-content-between justify-content-md-center justify-content-xl-between flex-wrap mb-4">
+                                    <div>
+                                        <p class="mb-2 text-md-center text-lg-left">Total Orders</p>
+                                        <h1 class="mb-0">{{ total_orders }}</h1>
+                                    </div>
+                                    <i class="typcn typcn-chart-pie icon-xl text-secondary"></i>
+                                </div>
+                                <canvas id="budget-chart" height="80"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 grid-margin stretch-card">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="d-flex align-items-center justify-content-between justify-content-md-center justify-content-xl-between flex-wrap mb-4">
+                                    <div>
+                                        <p class="mb-2 text-md-center text-lg-left">Total Works Completed</p>
+                                        <h1 class="mb-0">{{ total_completed_works }}</h1>
+                                    </div>
+                                    <i class="typcn typcn-clipboard icon-xl text-secondary"></i>
+                                </div>
+                                <canvas id="balance-chart" height="80"></canvas>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <center>
+                    <style>
+                        .form-container {
+                          max-width: 100%;
+                          margin: 35px auto;
+                          padding: 20px;
+                          background-color: #fff;
+                          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+<!--                          margin-bottom: 100px;-->
+                    <!--      height: 1200px;-->
+                          overflow-y: auto;
+                          display: flex;
+                          flex-wrap: wrap;
+                        }
+                    </style>
+                    <u><h4 style="color: black;">Upcoming Deliveries</h4></u>
+                    <div class="container form-container" style="margin-top: 1px;">
+                        <div class="col-md-12">
+                            <div class="card">
+                                <input type="date" id="deliveryDateFilter" class="form-control"
+                                       placeholder="dd/mm/yyyy">
+
+                                <button type="button" id="showAllBtn" class="btn btn-primary">Show All</button>
+
+                                <div class="table-responsive">
+                                    <table class="table table-striped project-orders-table" id="deliveryTable">
+                                        <thead>
+                                        <tr>
+                                            <th>Sl.No</th>
+                                            <th>Customer Name</th>
+                                            <th>Contact Number</th>
+                                            <th>Order Date</th>
+                                            <th>Delivery Date</th>
+                                            <th>Tailor</th>
+                                            <!--                                            <th>Action</th>-->
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        {% for i in cus %}
+                                        <tr data-order-date="{{ i.delivery_date }}">
+                                            <td>{{ forloop.counter }}</td>
+                                            <td><a style="color:black;" href="{% url 'single_customer_reception' customer_id=i.customer_id.id %}">{{ i.customer_id.name }}</a></td>
+                                            <td>{{ i.customer_id.mobile }}</td>
+                                            <td>{{ i.order_date }}</td>
+                                            <td>{{ i.delivery_date }}</td>
+                                            <td>{{ i.tailor.tailor }}</td>
+
+                                        </tr>
+                                        {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <script>
+                        function validateSearch() {
+                            var query = document.getElementById('searchInput').value.trim();
+
+                            if (query === "") {
+                                alert('Please enter a valid mobile number');
+                                return false; // Prevent form submission
+                            }
+
+                            return true; // Allow form submission
+                        }
+                    </script>
+                    <script>
+                        function removePastDeliveries() {
+                            console.log("Removing past deliveries...");
+
+                            var currentDate = new Date();
+                            currentDate.setHours(0, 0, 0, 0); // Set current date to midnight
+
+                            // Hide rows with past delivery dates
+                            $('#deliveryTable tbody tr').each(function () {
+                                var $row = $(this);
+                                var deliveryDateStr = $row.find('td:nth-child(5)').text().trim();
+
+                                try {
+                                    var deliveryDate = new Date(deliveryDateStr);
+                                    deliveryDate.setHours(0, 0, 0, 0); // Set delivery date to midnight
+
+                                    if (!isNaN(deliveryDate) && deliveryDate.getTime() < currentDate.getTime()) {
+                                        $row.remove(); // Remove the row instead of hiding
+                                        console.log("Row removed:", $row);
+                                    }
+                                } catch (error) {
+                                    console.error("Error parsing date:", error);
+                                }
+                            });
+
+                            // Refresh Sl.No
+                            updateSlNo();
+                        }
+
+                        function updateSlNo() {
+                            $('#deliveryTable tbody tr').each(function (index) {
+                                $(this).find('td:first').text(index + 1);
+                            });
+
+                            // Log visible rows after updating Sl.No
+                            console.log("Visible rows after updating Sl.No:", $('#deliveryTable tbody tr').length);
+                        }
+
+                        // Remove past deliveries on page load
+                        removePastDeliveries();
+
+                        // Set interval to check and remove past deliveries every minute
+                        setInterval(function () {
+                            removePastDeliveries();
+                        }, 60000);
+
+                        // Date filter for displaying results on a particular date
+                        $('#deliveryDateFilter').on('change', function () {
+                            var selectedDate = $(this).val();
+                            if (selectedDate) {
+                                // Format the selected date consistently with 'YYYY-MM-DD'
+                                var formattedSelectedDate = new Date(selectedDate);
+                                formattedSelectedDate.setHours(0, 0, 0, 0);
+
+                                $('#deliveryTable tbody tr').each(function () {
+                                    var $row = $(this);
+                                    var deliveryDateStr = $row.find('td:nth-child(5)').text().trim();
+                                    try {
+                                        var deliveryDate = new Date(deliveryDateStr);
+                                        deliveryDate.setHours(0, 0, 0, 0);
+
+                                        if (!isNaN(deliveryDate) && deliveryDate.getTime() === formattedSelectedDate.getTime()) {
+                                            $row.show();
+                                        } else {
+                                            $row.hide();
+                                        }
+                                    } catch (error) {
+                                        console.error("Error parsing date:", error);
+                                    }
+                                });
+                            } else {
+                                $('#deliveryTable tbody tr').show();
+                            }
+
+                            // Refresh Sl.No
+                            updateSlNo();
+                        });
+
+                        // Show all button to display all rows
+                        $('#showAllBtn').on('click', function () {
+                            $('#deliveryTable tbody tr').show();
+
+                            // Refresh Sl.No
+                            updateSlNo();
+                        });
+                        $('#showAllExceptPastBtn').on('click', function () {
+                  $('#deliveryTable tbody tr').show();
+                  removePastDeliveries(); // Call the function to remove past deliveries
+
+                  // Refresh Sl.No
+                  updateSlNo();
+              });
+                    </script>
+            </div>
+            {% endblock %}
+            <!-- main-panel ends -->
+
+        </div>
+
+
+        <!-- page-body-wrapper ends -->
+    </div>
+    <footer class="footer" style="padding:0">
+        <div class="card">
+            <div class="card-body">
+                <div class="d-sm-flex justify-content-center justify-content-sm-between">
+                        <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Codeedex Technologies <a
+                                href="#" class="text-muted" target="_blank"></a></span>
+                    <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center text-muted"></span>
+                </div>
+            </div>
+        </div>
+    </footer>
+</div>
+
+
+<script src="{% static 'vendors/js/vendor.bundle.base.js' %}"></script>
+<script src="{% static 'vendors/chart.js/Chart.min.js' %}"></script>
+<script src="{% static 'js/off-canvas.js' %}"></script>
+<script src="{% static 'js/hoverable-collapse.js' %}"></script>
+<script src="{% static 'js/template.js' %}"></script>
+<script src="{% static 'js/settings.js' %}"></script>
+<script src="{% static 'js/todolist.js' %}"></script>
+<script src="{% static 'js/dashboard.js' %}"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+
+{% if messages %}
+{% for i in messages %}
+{% if i.tags == 'warning' %}
+<script>
+    swal('{{i}}','','warning');
+</script>
+{% elif i.tags == 'error' %}
+<script>
+    swal('{{i}}','','error');
+</script>
+{% elif i.tags == 'success' %}
+<script>
+    swal('{{i}}','','success');
+</script>
+{% else %}
+<script>
+    swal('{{i}}','','info');
+</script>
+{% endif %}
+{% endfor %}
+{% endif %}
+</body>
+</html>
+

@@ -1,0 +1,158 @@
+{% extends 'reception_dashboard.html' %}
+{% block content %}
+<style>
+    body {
+      background-color: #f8f9fa;
+    }
+
+    .form-container {
+      max-width: 100%;
+      margin: 35px auto;
+      padding: 20px;
+      background-color: #fff;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      margin-bottom: 100px;
+<!--      height: 619px;-->
+      overflow-y: auto;
+<!--      display: flex;-->
+<!--      flex-wrap: wrap;-->
+    }
+
+
+</style>
+
+<div class="container form-container" style="margin-top:1px;">
+    <div class="">
+        <div class="card-body">
+            <h5 style="text-align:center; margin-top:3px;" class="card-title">Customer Details</h5>
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>Sl.No</th>
+                        <th>Customer ID</th>
+                        <th>Name</th>
+                        <th>Contact Number</th>
+                        <th>Cloth Number</th>
+                        <th>Length</th>
+                        <th>Shoulder</th>
+                        <th>Loose</th>
+                        <th>Neck</th>
+                        <th>Regal</th>
+                        <th>Cuff Length</th>
+                        <th>Cuff Type</th>
+                        <th>Sleeve</th>
+                        <th>Sleeve Type</th>
+                        <th>Bill Number</th>
+                        <th>Order Date</th>
+                        <th>Delivery Date</th>
+                        <th>Bottom Measure 1</th>
+                        <th>Bottom Measure 2</th>
+                        <th>Button Type</th>
+                        <th>Tailor</th>
+                        <th>Description</th>
+                        <th>Action</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        {% for i in cus %}
+                        <td>{{ forloop.counter }}</td>
+                        <td>{{i.id}}</td>
+                        <td>
+                            <a href="{% url 'single_customer_reception' customer_id=i.id %}" style="color:black;">{{i.name}}</a>
+                        </td>
+                        <td>{{i.mobile}}</td>
+                        <td>{{i.cloth}}</td>
+                        <td>{{i.length}}</td>
+                        <td>{{i.shoulder}}</td>
+                        <td>{{i.loose}}</td>
+                        <td>{{i.neck}}</td>
+                        <td>{{i.regal}}</td>
+                        <td>{{i.cuff_length}}</td>
+                        <td>{{i.cuff_type}}</td>
+                        <td>{{i.sleeve_length}}</td>
+                        <td>{{i.sleeve_type}}</td>
+                        <td>{{i.bill_number}}</td>
+                        <td>{{i.order_date}}</td>
+                        <td>{{i.delivery_date}}</td>
+                        <td>{{i.bottom1}}</td>
+                        <td>{{i.bottom2}}</td>
+                        <td>{{i.button_type}}</td>
+                        <td>{{i.tailor.tailor}}</td>
+                        <td>{{i.description}}</td>
+
+                        <td>
+                            <form action="{% url 'add_order_recption' dataid=i.id  %}">
+                                <button type="submit" class="btn btn-outline-info btn-icon-text btn-sm">
+                                    add
+                                </button>
+                            </form>
+                        </td>
+                        <td>
+                            <form action="{% url 'edit_customer_recption' dataid=i.id %}">
+                                <button type="submit" class="btn btn-outline-info btn-icon-text btn-sm">
+                                    Edit
+                                </button>
+                            </form>
+                        </td>
+                        <td>
+
+                            <form action="{% url 'customerdlt_recption' dlt=i.id %}" method="post"
+                                  onsubmit="return confirm('Are you sure you want to delete this Customer?');">
+                                {% csrf_token %}
+
+                                <button type="submit" class="btn btn-outline-danger btn-icon-text btn-sm">
+                                    Delete
+                                </button>
+                            </form>
+
+                        </td>
+                        <td>
+                            <form action="{% url 'generate_pdf' customer_id=i.id %}" method="post">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-outline-danger btn-icon-text btn-sm">
+                                    Print
+                                </button>
+                            </form>
+                        </td>
+
+                    </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    function printCustomerDetails(name, phone_number, length, shoulder, loose, neck, regal, cuff_length, cuff_type, sleeve_length, sleeve_type, bill_number, order_date, delivery_date, bottom1, bottom2, button_type, tailor) {
+        const content = `
+            Name: ${name}
+            Contact Number: ${phone_number}
+            Length: ${length}
+            Shoulder: ${shoulder}
+            Loose: ${loose}
+            Neck: ${neck}
+            Regal: ${regal}
+            Cuff Length: ${cuff_length}
+            Cuff Type: ${cuff_type}
+            Sleeve Length: ${sleeve_length}
+            Sleeve Type: ${sleeve_type}
+            Bill Number: ${bill_number}
+            Order Date: ${order_date}
+            Delivery Date: ${delivery_date}
+            Bottom Measure 1: ${bottom1}
+            Bottom Measure 2: ${bottom2}
+            Button Type: ${button_type}
+            Tailor: ${tailor}
+        `;
+
+        const pdf = new jsPDF();
+        pdf.text(content, 10, 10);
+        pdf.save('customer_details.pdf');
+    }
+</script>
+{% endblock %}

@@ -1,0 +1,209 @@
+{% extends 'dashboard.html' %}
+{% block content %}
+
+<style>
+    body {
+      background-color: #f8f9fa;
+    }
+
+    .form-container {
+      max-width: 100%;
+      margin: 35px auto;
+      padding: 20px;
+      background-color: #fff;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+<!--      margin-bottom: 100px;-->
+<!--      height: 1200px;-->
+      overflow-y: auto;
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    .button-container {
+        display: flex;
+        justify-content: center; /* Center items horizontally */
+        margin-top: 20px;
+    }
+
+    .button-container button {
+        margin: 0 10px; /* Add spacing between buttons */
+    }
+</style>
+<div class="container form-container" style="margin-top:1px;">
+    <form class="container" method="post" action="{% url 'update_customer' dataid=cus.id %}">
+        {% csrf_token %}
+        <h6 class="text-center"><u>Edit User Details & Measurements</u></h6>
+        <div class="row">
+            <div class="col-md-6">
+                <!-- Left Side -->
+                <div class="form-group">
+                    <b><label for="name">Name:</label></b>
+                    <input type="text" class="form-control" id="name" placeholder="Enter your name" required
+                           name="name" value="{{cus.name}}">
+                </div>
+                <div class="form-group">
+                    <label for="number"><b>Mobile:</b></label>
+                    <input type="number" class="form-control" id="number" placeholder="Enter your mobile"
+                           min="0" required
+                           name="mobile" value="{{cus.mobile}}">
+                </div>
+
+                <div class="form-group">
+                    <label for="cloth"><b>Cloth:</b></label>
+                    <input type="text" class="form-control" id="cloth" placeholder=""
+                           required
+                           name="cloth" value="{{cus.cloth}}">
+                </div>
+                <div class="form-group">
+                    <b><label for="name">Length:</label></b>
+                    <input type="number" class="form-control" id="length" placeholder="" required min="0"
+                           name="length" value="{{cus.length}}">
+                </div>
+                <div class="form-group">
+                    <b><label for="shoulder">Shoulder:</label></b>
+                    <input type="number" class="form-control" id="shoulder" min="0" placeholder="" required
+                           name="shoulder" value="{{cus.shoulder}}">
+                </div>
+                <div class="form-group">
+                    <b><label>Sleeve:</label></b>
+                    <select class="form-control" style="border: 1px solid #ccc;" name="sleeve">
+                        <option>{{cus.sleeve_type}}</option>
+                        <option>Half Sleev</option>
+                        <option>Full Sleev</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <b><label for="loose">Sleeve Length:</label></b>
+                    <input type="number" class="form-control" id="sleeve" min="0" placeholder="" required
+                           name="sleeve_length" value="{{cus.sleeve_length}}">
+                </div>
+
+                <div class="form-group">
+                    <b><label for="neck">Neck Round:</label></b>
+                    <input type="number" class="form-control" id="neck_round" placeholder="" required
+                           min="0" name="neck_round" value="{{cus.neck_round}}">
+                </div>
+                <div class="form-group">
+                    <b><label for="neck">Neck:</label></b>
+                    <input type="number" class="form-control" id="neck" placeholder=" " required min="0"
+                           name="neck" value="{{cus.neck}}">
+                </div>
+                <div class="form-group">
+                    <b><label for="collar">Collar:</label></b>
+                    <input type="number" class="form-control" id="collar" placeholder="" required min="0"
+                           name="collar" value="{{cus.collar}}">
+                </div>
+
+            </div>
+            <div class="col-md-6">
+                <!-- Right Side -->
+                 <div class="form-group">
+                    <b><label for="regal">Regal:</label></b>
+
+                    <input type="number" class="form-control" id="regal" min="0" placeholder=" " required
+                           name="regal" value="{{cus.regal}}">
+                </div>
+                <div class="form-group">
+                    <b><label for="wrist">Wrist:</label></b>
+                    <input type="number" class="form-control" id="wrist" placeholder="" required min="0"
+                           name="wrist" value="{{cus.wrist}}">
+                </div>
+
+                <div class="form-group">
+                    <b> <label for="regal">Pocket Size:</label></b>
+                    <input type="number" class="form-control" id="pocket" min="0" placeholder=" " required
+                           name="pocket" value="{{cus.pocket}}">
+                </div>
+                <div class="form-group">
+                    <b><label for="loose">Loose:</label></b>
+                    <input type="number" class="form-control" id="loose" min="0" placeholder="" required
+                           name="loose" value="{{cus.loose}}">
+                </div>
+                <div class="form-group">
+                    <b><label for="loose">Cuff Length:</label></b>
+                    <input type="number" class="form-control" id="cuff" min="0" placeholder=" " required
+                           name="cuff_length" value="{{cus.cuff_length}}">
+                </div>
+                <div class="form-group">
+                    <b><label>Cuff Type:</label></b>
+                    <select class="form-control" style="border: 1px solid #ccc;" name="cuff_type">
+                        <option>{{cus.cuff_type}}</option>
+                        <option>Cuff</option>
+                        <option>Normal</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <b><label>Button Type:</label></b>
+                    <select class="form-control" style="border: 1px solid #ccc;" name="button_type">
+                        <option>{{cus.button_type}}</option>
+                        <option>Makfi</option>
+                        <option> Bayyin Makfi</option>
+                        <option>Zip Makfi</option>
+                        <option>Button Bayyin</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <b><label for="loose">Bottom :</label></b>
+                    <input type="number" class="form-control" id="bottom1" min="0" placeholder="" required
+                           name="bottom1" value="{{cus.bottom1}}">
+                </div>
+                <div class="form-group">
+                    <b></b><label for="loose">
+                    <script type="text/nonexistent"> Bottom 2</script>&nbsp;</label></b>
+                    <input type="number" class="form-control" id="bottom2" min="0" placeholder=" " required
+                           name="bottom2" value="{{cus.bottom2}}">
+                </div>
+
+                <div class="form-group">
+                    <b><label for="other">Other:</label></b>
+                    <textarea id="other" class="form-control" style=" border: 1px solid #ccc;height:124px"
+                             name="other" maxlength="10000">{{cus.description}}</textarea>
+                </div>
+                <div class="form-group">
+                    <label></label>
+                    <input type="hidden" id="billnum" name="">
+                </div>
+
+            </div>
+        </div>
+
+
+        <div>
+            <button type="submit" class="btn btn-primary">Update</button>
+            <button type="button" class="btn btn-secondary btn-cancel">Cancel</button>
+        </div>
+    </form>
+</div>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+
+{% if messages %}
+{% for i in messages %}
+{% if i.tags == 'warning' %}
+<script>
+    swal('{{i}}','','warning');
+</script>
+{% elif i.tags == 'error' %}
+<script>
+    swal('{{i}}','','error');
+</script>
+{% elif i.tags == 'success' %}
+<script>
+    swal('{{i}}','','success');
+</script>
+{% else %}
+<script>
+    swal('{{i}}','','info');
+</script>
+{% endif %}
+{% endfor %}
+{% endif %}
+
+
+{% endblock %}
+

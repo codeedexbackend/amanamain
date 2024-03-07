@@ -1,0 +1,53 @@
+{% extends 'dashboard.html' %}
+{% block content %}
+<style>
+    body {
+      background-color: #f8f9fa;
+    }
+
+    .form-container {
+      max-width: 1200px;
+      margin: 35px auto;
+      padding: 20px;
+      background-color: #fff;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      margin-bottom: 100px;
+      height: 653px;
+      overflow-y: auto;
+    }
+
+
+</style>
+
+<div class="container form-container" style="margin-top:1px;">
+    <div class="">
+        <div class="card-body">
+            <h5 style="text-align:center; margin-top:3px;" class="card-title">Customer History</h5>
+            <p><strong>History:</strong> {{ customer.name }}</p>
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>Customer Name</th>
+                        <th>Contact Number</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for customer in customers %}
+                    <tr>
+                        <td><strong><a href="{% url 'customer_history' customer_id=customer.id %}"
+                                       style="color: black;">{{ customer.name }}</a></strong></td>
+                        <td><strong>{{ customer.mobile}}</strong></td>
+                    </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+</div>
+</div>
+<!-- main-panel ends -->
+{% endblock %}

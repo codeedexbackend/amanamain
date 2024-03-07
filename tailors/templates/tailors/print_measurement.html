@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Print Measurement</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+        }
+
+        .measurement-details {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        .button-wrapper {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="measurement-details">
+        <h2>{{ measurement.name }} Measurement</h2>
+
+        <table>
+            <tr>
+                <th>Bill Number:</th>
+                <td>{{ measurement.bill_number }}</td>
+            </tr>
+            
+            <tr>
+                <th>Customer:</th>
+                <td>{{ measurement.name }}</td>
+            </tr>
+            <tr>
+                <th>Tailor:</th>
+                <td>
+                    {% if measurement.tailor %}
+                        {{ measurement.tailor.tailor }}
+                    {% else %}
+                        Not assigned
+                    {% endif %}
+                </td>
+            </tr>
+            <tr>
+                <th>Length:</th>
+                <td>{{ measurement.length }}</td>
+            </tr>
+            <tr>
+                <th>Shoulder:</th>
+                <td>{{ measurement.shoulder }}</td>
+            </tr>
+            
+
+            <tr>
+                <th>Loose:</th>
+                <td>{{ measurement.loose }}</td>
+            </tr>
+
+            <tr>
+                <th>Neck:</th>
+                <td>{{ measurement.neck }}</td>
+            </tr>
+            <tr>
+                
+                <th>Regal:</th>
+                <td>{{ measurement.regal }}</td>
+            </tr>
+            <tr>
+                <th>Cuff Type:</th>
+                <td>{{ measurement.cuftype}}</td>
+            </tr>
+                
+            <tr>
+                <th>Cuff:</th>
+                <td>{{ measurement.cuf }}</td>
+            </tr>
+                        
+        
+            <tr>
+                <th>Sleeve:</th>
+                <td>{{ measurement.sleeve }}</td>
+            </tr>
+                        
+        
+            <tr>
+                <th>Sleeve Type:</th>
+                <td>{{ measurement.get_sleeve_type_display }}</td>
+            </tr>
+                        
+            <tr>
+                <th>Order Date:</th>
+                <td>{{ measurement.order_date }}</td>
+            </tr>
+                
+            <tr>
+                <th>Delivery Date:</th>
+                <td>{{ measurement.delivery_date }}</td>
+            </tr>
+            <tr>
+                                
+                <th>Bottom 1:</th>
+                <td>{{ measurement.bottom1 }}</td>
+            </tr>
+            <tr>
+                <th>Bottom 2:</th>
+                <td>{{ measurement.bottom2 }}</td>
+            </tr>
+            <tr>
+                        
+            <tr>
+                <th>Button Type:</th>
+                <td>{{ measurement.get_button_type_display }}</td>
+            </tr>
+                                        
+                                            
+
+            <!-- Add similar rows for other measurements -->
+        </table>
+
+        <div class="button-wrapper">
+            <!-- Form for PDF download -->
+            <form action="{% url 'measurement_pdf' measurement.id %}" method="get">
+                <button type="submit">Download as PDF</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

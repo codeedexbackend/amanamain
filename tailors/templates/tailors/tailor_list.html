@@ -1,0 +1,16 @@
+<!-- tailor_list.html -->
+
+{% for tailor in tailors %}
+  <div>
+    <h2>{{ tailor.tailor_name }}</h2>
+    <p>Username: {{ tailor.username }}</p>
+    <p>Mobile Number: {{ tailor.mobile_number }}</p>
+    
+    <h3>Work Status:</h3>
+    <ul>
+      {% for work_status in tailor.workstatus_set.all %}
+        <li>{{ work_status.customer.name }} - {{ work_status.status }}</li>
+      {% endfor %}
+    </ul>
+  </div>
+{% endfor %}

@@ -1,0 +1,62 @@
+{% extends 'reception_dashboard.html' %}
+{% block content %}
+<style>
+    body {
+      background-color: #f8f9fa;
+    }
+
+    .form-container {
+      max-width: 100%;
+      margin: 35px auto;
+      padding: 20px;
+      background-color: #fff;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      margin-bottom: 100px;
+<!--      height: 619px;-->
+      overflow-y: auto;
+<!--      display: flex;-->
+<!--      flex-wrap: wrap;-->
+    }
+
+
+</style>
+<div class="container form-container" style="margin-top:1px;">
+  <div class="">
+      <div class="card-body">
+          <h5 style="text-align:center; margin-top:3px;" class="card-title">Tailor Details</h5>
+          <div class="table-responsive">
+              <table class="table">
+                  <thead>
+                      <tr>
+                          <th>Tailor ID</th>
+                          <th>Tailor Name</th>
+                          <th>Contact Number</th>
+<!--                          <th>Username</th>-->
+
+<!--                          <th>Password</th>-->
+                          <th>Assigned Works</th>
+                          <th>Pending Works</th>
+                          <th>Completed Works</th>
+<!--                          <th>Actions</th>-->
+                      </tr>
+                  </thead>
+                  <tbody>
+                      {% for i in tailors %}
+                      <tr>
+                        <td>{{ i.id }}</td>
+                        <td>{{ i.tailor }}</td>
+                        <td>{{ i.mobile_number }}</td>
+<!--                        <td>{{ i.username }}</td>-->
+<!--                        <td>{{ i.password }}</td>-->
+                        <td>{{ i.assigned_works }}</td>
+                        <td>{{ i.pending_works }}</td>
+                        <td>{{ i.completed_works }}</td>
+                    </tr>
+                    {% endfor %}
+                  </tbody>
+              </table>
+          </div>
+      </div>
+  </div>
+</div>
+{% endblock %}

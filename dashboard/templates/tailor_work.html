@@ -1,0 +1,24 @@
+{% extends 'dashboard.html' %}
+{% block content %}
+<div class="content-wrapper">
+    <h3 style="text-align:center;">Select Dates</h3><br><br>
+    <form method="post" action="{% url 'tailor_work_details'  %}">
+        {% csrf_token %}
+        <label for="start_date" style="display: block; margin-bottom: 10px;">Start Date:</label>
+        <input type="date" id="start_date" name="start_date" required
+               style="width: 100%; padding: 10px; margin-bottom: 15px; border: 1px solid #ced4da; border-radius: 4px; box-sizing: border-box;">
+
+        <label for="end_date" style="display: block; margin-bottom: 10px;">End Date:</label>
+        <input type="date" id="end_date" name="end_date" required
+               style="width: 100%; padding: 10px; margin-bottom: 15px; border: 1px solid #ced4da; border-radius: 4px; box-sizing: border-box;">
+
+        <form action="{% url 'tailor_work_details'  %}">
+            <button type="submit" class="btn btn-success btn-sm">Submit</button>
+
+        </form>
+    </form>
+
+</div>
+</div>
+<!-- main-panel ends -->
+{% endblock %}
