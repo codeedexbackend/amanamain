@@ -105,7 +105,7 @@
                             </button>
                         </td>
                         <td>
-                            <form action="{% url 'customer_bill' customer_id=i.id %}" method="post">
+                            <form action="{% url 'customer_billpip' customer_id=i.id %}" method="post">
                                 {% csrf_token %}
                                 <button type="submit" class="btn btn-outline-danger btn-icon-text btn-sm">
                                     Print
