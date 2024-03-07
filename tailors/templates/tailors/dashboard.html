@@ -1,0 +1,62 @@
+<!-- tailors/templates/tailors/dashboard.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tailor Management System - Dashboard</title>
+    <!-- Add your stylesheets and scripts here -->
+</head>
+<body>
+
+    <header>
+        <h1>Tailor Management System</h1>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="{% url 'list_customers' %}">Customers</a></li>
+            <li><a href="{% url 'create_tailor' %}">Create Tailor</a></li>
+            <!-- Add more navigation links as needed -->
+        </ul>
+    </nav>
+
+    <section>
+        <h2>Welcome to the Dashboard</h2>
+
+        <div>
+            <h3>Statistics</h3>
+            <p>Total Customers: {{ total_customers }}</p>
+            <p>Total Measurements: {{ total_measurements }}</p>
+            <p>Total Tailors: {{ total_tailors }}</p>
+            <p>Total Orders: {{ total_orders }}</p>
+        </div>
+
+        <div>
+            <h3>Recent Orders</h3>
+            <ul>
+                {% for order in recent_orders %}
+                    <li>{{ order.customer.name }} - Order Date: {{ order.order_date }}, Delivery Date: {{ order.delivery_date }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <div>
+            <h3>Recent Tailors</h3>
+            <ul>
+                {% for tailor in recent_tailors %}
+                    <li>{{ tailor.name }} - Mobile Number: {{ tailor.mobile_number }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <!-- Add more dashboard content here -->
+
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Tailor Management System</p>
+    </footer>
+
+</body>
+</html>

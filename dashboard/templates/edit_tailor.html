@@ -1,0 +1,84 @@
+{% extends 'dashboard.html' %}
+{% block content %}
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title" style="text-align:center;">Update Tailors</h4>
+                    <form class="" method="post" action="{% url 'updatetailor' dataid=tail.id %}">
+                        {% csrf_token %}
+                        <div class="form-group row">
+                            <label for="exampleInputUsername2" class="col-sm-4 col-form-label">Tailor Name
+                                :</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="exampleInputUsername2"
+                                       placeholder="Tailor Name" name="tname" required value="{{tail.tailor}}">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="username" class="col-sm-4 col-form-label">User Name :</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="username" placeholder="User Name"
+                                       name="username" required value="{{tail.username}}">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="password" class="col-sm-4 col-form-label">Password :</label>
+                            <div class="col-sm-8">
+                                <input type="password" class="form-control" id="password" placeholder="Password"
+                                       name="password" required value="{{tail.password}}">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="mobile_number" class="col-sm-4 col-form-label">Contact Number :</label>
+                            <div class="col-sm-8">
+                                <input type="number" class="form-control" id="mobile_number"
+                                       placeholder="Contact Number" min="0" name="mobile" required
+                                       value="{{tail.mobile_number}}">
+                            </div>
+                        </div>
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-primary mr-2 btn-sm">Update</button>
+                            <button class="btn btn-light btn-sm">Cancel</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</div>
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+
+{% if messages %}
+{% for i in messages %}
+{% if i.tags == 'warning' %}
+<script>
+    swal('{{i}}','','warning');
+</script>
+{% elif i.tags == 'error' %}
+<script>
+    swal('{{i}}','','error');
+</script>
+{% elif i.tags == 'success' %}
+<script>
+    swal('{{i}}','','success');
+</script>
+{% else %}
+<script>
+    swal('{{i}}','','info');
+</script>
+{% endif %}
+{% endfor %}
+{% endif %}
+
+<!-- main-panel ends -->
+{% endblock %}

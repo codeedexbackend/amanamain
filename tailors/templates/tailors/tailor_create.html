@@ -1,0 +1,14 @@
+<!-- tailor_create.html -->
+
+{% extends 'base_generic.html' %}
+
+{% block content %}
+  <h2>Create Tailor</h2>
+  <form method="post" action="{% url 'create_tailor' %}">
+    {% csrf_token %}
+    
+    {{ form.as_p }}
+
+    <button type="submit">Create Tailor</button>
+  </form>
+{% endblock %}

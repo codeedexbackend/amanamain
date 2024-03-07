@@ -1,0 +1,70 @@
+{% extends 'reception_dashboard.html' %}
+{% block content %}
+
+<style>
+    .content-wrapper {
+        max-width: 800px;
+        margin: 50px auto;
+        padding: 20px;
+        background-color: #fff;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+        text-align: center;
+    }
+
+    h3 {
+        color: #007bff;
+    }
+
+    p {
+        color: #555;
+        margin-top: 10px;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+    }
+
+    th, td {
+        padding: 12px;
+        border: 1px solid #ced4da;
+        text-align: left;
+    }
+
+    th {
+        background-color: #007bff;
+        color: #fff;
+    }
+
+    tr:nth-child(even) {
+        background-color: #f8f9fa;
+    }
+</style>
+<div class="content-wrapper">
+    <h3>Tailor Work Details</h3>
+    <p>Showing works between {{ start_date }} and {{ end_date }}</p>
+
+    <table border="1">
+        <thead>
+        <tr>
+            <th>Tailor</th>
+            <th>Assigned Works</th>
+            <th>Pending Works</th>
+            <th>Completed Works</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for tailor_info in tailor_data %}
+        <tr>
+            <td>{{ tailor_info.tailor }}</td>
+            <td>{{ tailor_info.assigned_works }}</td>
+            <td>{{ tailor_info.pending_works }}</td>
+            <td>{{ tailor_info.completed_works }}</td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

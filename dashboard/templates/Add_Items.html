@@ -1,0 +1,128 @@
+{% extends 'dashboard.html' %}
+{% block content %}
+<style>
+
+</style>
+<div class="container form-container">
+    <h5>Add Items</h5>
+    <form action="{% url 'save_items' %}" method="post">
+        {% csrf_token %}
+        <div id="itemsContainer">
+            <div>
+                <label > Customer Name:</label>
+                <input type="text" class="" name="customerName" value="{{order.customer_id.name}}">
+            </div>
+            <br>
+            <input type="hidden" name="orderid" value="{{order.id}}" >
+            <input type="hidden" name="customerid" value="{{order.customer_id.id}}" >
+            <!-- Initial item row -->
+            <div class="form-row align-items-center item-row">
+                <div class="col-sm-3">
+                    <label class="sr-only">Item Name</label>
+                    <input type="text" class="form-control mb-2" name="itemName[]" placeholder="Item Name" required>
+                </div>
+                <div class="col-sm-2">
+                    <label class="sr-only">Quantity</label>
+                    <input type="number" class="form-control mb-2" name="quantity[]" placeholder="Quantity" min="0"
+                           onchange="updateItemTotalPrice(this)" required>
+                </div>
+                <div class="col-sm-2">
+                    <label class="sr-only">Price</label>
+                    <input type="number" class="form-control mb-2" name="price[]" placeholder="Price" min="0"
+                           onchange="updateItemTotalPrice(this)" required>
+                </div>
+                <div class="col-sm-2">
+                    <label class="sr-only">Total Price</label>
+                    <span class="form-control mb-2 itemTotalPrice">0.00</span>
+                </div>
+                <div class="col-sm-3">
+                    <button type="button" class="btn btn-danger mb-2 btn-sm" onclick="removeItem(this)">Remove</button>
+                </div>
+            </div>
+            <!-- End of initial item row -->
+        </div>
+        <button type="button" class="btn btn-success mb-2" onclick="addMoreItem()">Add More</button>
+        <div class="form-group">
+            <label for="grandTotal">Grand Total:</label>
+            <span id="grandTotal">0.00</span>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="button" class="btn btn-secondary" onclick="resetForm()">Reset</button>
+    </form>
+</div>
+<script>
+    function addMoreItem() {
+      var itemsContainer = document.querySelector('#itemsContainer');
+      var newItemRow = document.createElement('div');
+      newItemRow.className = 'form-row align-items-center item-row';
+      newItemRow.innerHTML = `
+        <div class="col-sm-3">
+          <label class="sr-only">Item Name</label>
+          <input type="text" class="form-control mb-2" name="itemName[]" placeholder="Item Name" required>
+        </div>
+        <div class="col-sm-2">
+          <label class="sr-only">Quantity</label>
+          <input type="number" class="form-control mb-2" name="quantity[]" placeholder="Quantity" min="0" required onchange="updateItemTotalPrice(this)">
+        </div>
+        <div class="col-sm-2">
+          <label class="sr-only">Price</label>
+          <input type="number" class="form-control mb-2" name="price[]" placeholder="Price" min="0" required onchange="updateItemTotalPrice(this)">
+        </div>
+        <div class="col-sm-2">
+          <label class="sr-only">Total Price</label>
+          <span class="form-control mb-2 itemTotalPrice">0.00</span>
+        </div>
+        <div class="col-sm-3">
+          <button type="button" class="btn btn-danger mb-2 btn-sm" onclick="removeItem(this)">Remove</button>
+        </div>
+      `;
+      itemsContainer.appendChild(newItemRow);
+    }
+
+    function removeItem(button) {
+      var itemRow = button.closest('.item-row');
+      if (itemRow.parentElement.children.length > 1) {
+        itemRow.remove();
+        updateGrandTotal();
+      }
+    }
+
+    function updateItemTotalPrice(element) {
+      var itemRow = element.closest('.item-row');
+      var quantityInput = itemRow.querySelector('[name="quantity[]"]');
+      var priceInput = itemRow.querySelector('[name="price[]"]');
+      var totalSpan = itemRow.querySelector('.itemTotalPrice');
+
+      var quantity = parseInt(quantityInput.value) || 0;
+      var price = parseFloat(priceInput.value) || 0;
+      var total = quantity * price;
+
+      totalSpan.innerText = total.toFixed(2);
+      updateGrandTotal();
+    }
+
+    function updateGrandTotal() {
+      var grandTotal = 0;
+      var itemTotalElements = document.querySelectorAll('.itemTotalPrice');
+      itemTotalElements.forEach(function (element) {
+        grandTotal += parseFloat(element.innerText) || 0;
+      });
+
+      document.getElementById('grandTotal').innerText = grandTotal.toFixed(2);
+    }
+
+    function resetForm() {
+      var itemInputs = document.querySelectorAll('.item-row input');
+      itemInputs.forEach(function (input) {
+        input.value = '';
+      });
+
+      var itemTotalElements = document.querySelectorAll('.itemTotalPrice');
+      itemTotalElements.forEach(function (element) {
+        element.innerText = '0.00';
+      });
+
+      document.getElementById('grandTotal').innerText = '0.00';
+    }
+</script>
+{% endblock %}

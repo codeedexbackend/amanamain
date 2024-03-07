@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Customer Details</title>
+</head>
+<body>
+    <h1>{{ customer.name }}'s Details</h1>
+    <p>Email: {{ customer.email }}</p>
+    <p>Phone: {{ customer.phone_number }}</p>
+
+    <h2>Measurements</h2>
+    <p>Height: {{ customer.measurements.height }}</p>
+    <p>Chest: {{ customer.measurements.chest }}</p>
+    <p>Waist: {{ customer.measurements.waist }}</p>
+    <p>Hips: {{ customer.measurements.hips }}</p>
+    <p>Inseam: {{ customer.measurements.inseam }}</p>
+
+    <a href="{% url 'create_order' customer.id %}">Create Order</a>
+</body>
+</html>

@@ -1,0 +1,131 @@
+{% extends 'reception_dashboard.html' %}
+{% block content %}
+<style>
+    body {
+      background-color: #f8f9fa;
+    }
+
+    .form-container {
+      max-width: 1200px;
+      margin: 35px auto;
+      padding: 20px;
+      background-color: #fff;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      margin-bottom: 100px;
+      height: 619px;
+      overflow-y: auto;
+    }
+
+
+</style>
+
+<div class="container form-container" style="margin-top:1px;">
+    <div class="">
+        <div class="card-body">
+            <h5 style="text-align:center; margin-top:3px;" class="card-title">Order Details</h5>
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>Sl.No</th>
+                        <th>Order ID</th>
+                        <th>Customer ID</th>
+                        <th>Name</th>
+                        <th>Contact Number</th>
+                        <th>Cloth Number</th>
+                        <th>Length</th>
+                        <th>Shoulder</th>
+                        <th>Loose</th>
+                        <th>Neck</th>
+                        <th>Regal</th>
+                        <th>Cuff Length</th>
+                        <th>Cuff Type</th>
+                        <th>Sleeve</th>
+                        <th>Sleeve Type</th>
+                        <th>Bill Number</th>
+                        <th>Order Date</th>
+                        <th>Delivery Date</th>
+                        <th>Bottom Measure 1</th>
+                        <th>Bottom Measure 2</th>
+                        <th>Button Type</th>
+                        <th>Description</th>
+                        <th>Tailor</th>
+                        <th>Action</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        {% for i in cus %}
+                        <td>{{ forloop.counter }}</td>
+                        <td>{{i.id}}</td>
+                        <td>{{i.customer_id.id}}</td>
+                        <td>
+                            <a style="color:black;" href="{% url 'single_customer_reception' customer_id=i.customer_id.id %}">{{i.customer_id.name}}</a>
+                        </td>
+                        <td>{{i.customer_id.mobile}}</td>
+                        <td>{{i.cloth}}</td>
+                        <td>{{i.length}}</td>
+                        <td>{{i.shoulder}}</td>
+                        <td>{{i.loose}}</td>
+                        <td>{{i.neck}}</td>
+                        <td>{{i.regal}}</td>
+                        <td>{{i.cuff_length}}</td>
+                        <td>{{i.cuff_type}}</td>
+                        <td>{{i.sleeve_length}}</td>
+                        <td>{{i.sleeve_type}}</td>
+                        <td>{{i.bill_number}}</td>
+                        <td>{{i.order_date}}</td>
+                        <td>{{i.delivery_date}}</td>
+                        <td>{{i.bottom1}}</td>
+                        <td>{{i.bottom2}}</td>
+                        <td>{{i.button_type}}</td>
+                        <td>{{i.customer_id.description}}</td>
+                        <td>{{i.tailor}}</td>
+                        <td>
+                            <form action="{% url 'edit_order_reception' dataid=i.id %}">
+                                <button type="submit" class="btn btn-outline-info btn-icon-text btn-sm">
+                                    Edit
+                                </button>
+                            </form>
+                        </td>
+                        <td>
+                            <!-- <form action="{% url 'customerdlt' dlt=i.id %}" method="post" onsubmit="return confirm('Are you sure you want to delete this Customer?');"> -->
+
+                            <form action="{% url 'orderdlt_reception' dlt=i.id %}" method="post"
+                                  onsubmit="return confirm('Are you sure you want to delete this Customer?');">
+                                {% csrf_token %}
+
+                                <button type="submit" class="btn btn-outline-danger btn-icon-text btn-sm">
+                                    Delete
+                                </button>
+                            </form>
+                            </button>
+
+
+                            </button>
+                        </td>
+                        <td>
+                            <form action="{% url 'customer_bill' customer_id=i.id %}" method="post">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-outline-danger btn-icon-text btn-sm">
+                                    Print
+                                </button>
+                            </form>
+                        </td>
+                        </form>
+                        </td>
+
+                        </td>
+                    </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+</div>
+</div>
+<!-- main-panel ends -->
+{% endblock %}

@@ -1,0 +1,122 @@
+{% extends 'reception_dashboard.html' %}
+{% block content %}
+<style>
+    body {
+      background-color: #f8f9fa;
+    }
+
+    .form-container {
+      max-width: 100%;
+      margin: 35px auto;
+      padding: 20px;
+      background-color: #fff;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      margin-bottom: 100px;
+<!--      height: 619px;-->
+      overflow-y: auto;
+<!--      display: flex;-->
+<!--      flex-wrap: wrap;-->
+    }
+
+
+</style>
+<div class="container form-container" style="margin-top:1px;">
+    <div class="">
+        <div class="card-body">
+            <h5 style="text-align:center; margin-top:3px;" class="card-title">Order Details</h5>
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                    <div>
+                        <h4 style="text-align:center; color:blue;">Search Results for '{{ query }}'</h4>
+
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Mobile</th>
+                                <th>Cloth Number</th>
+                                <th>Length</th>
+                                <th>Shoulder</th>
+                                <th>Loose</th>
+                                <th>Neck</th>
+                                <th>Regal</th>
+                                <th>Cuff Length</th>
+                                <th>Cuff Type</th>
+                                <th>Sleeve Length</th>
+                                <th>Sleeve Type</th>
+                                <th>Bill Number</th>
+                                <th>Order Date</th>
+                                <th>Delivery Date</th>
+                                <th>Bottom Measure 1</th>
+                                <th>Bottom Measure 2</th>
+                                <th>Button Type</th>
+                                <th>Tailor</th>
+                                <th>Action</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for results in results.customer %}
+                            <tr>
+                                <td>
+                                    <a href="{% url 'single_customer_reception' customer_id=results.id %}"
+                                       style="color:black;">{{results.name}}</a>
+                                </td>
+                                <td>{{ results.mobile }}</td>
+                                <td>{{ results.cloth }}</td>
+                                <td>{{ results.length }}</td>
+                                <td>{{ results.shoulder }}</td>
+                                <td>{{ results.loose }}</td>
+                                <td>{{ results.neck }}</td>
+                                <td>{{ results.regal }}</td>
+                                <td>{{ results.cuff_length }}</td>
+                                <td>{{ results.cuff_type }}</td>
+                                <td>{{ results.sleeve_length }}</td>
+                                <td>{{ results.sleeve_type }}</td>
+                                <td>{{ results.bill_number }}</td>
+                                <td>{{ results.order_date }}</td>
+                                <td>{{ results.delivery_date }}</td>
+                                <td>{{ results.bottom1 }}</td>
+                                <td>{{ results.bottom2 }}</td>
+                                <td>{{ results.button_type }}</td>
+                                <td>{{ results.tailor.tailor }}</td>
+                                <td>
+                                    <a href="{% url 'add_order_recption' dataid=results.id %}">
+                                        <button type="submit" class="btn btn-secondary btn-sm">
+                                            Add
+                                        </button>
+                                    </a>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                        <br><br>
+
+                        {% if not results.customer %}
+                        <style>
+                            @keyframes blink {
+                                0% {
+                                    opacity: 1;
+                                }
+                                50% {
+                                    opacity: 0;
+                                }
+                                100% {
+                                    opacity: 1;
+                                }
+                            }
+
+                            .blink {
+                                animation: blink 1s infinite;
+                            }
+                        </style>
+                        <h4 style="color:red; text-align:center;" class="blink">No results found.</h4>
+                        {% endif %}
+                    </div>
+            </div>
+        </div>
+    </div>
+
+
+    {% endblock %}

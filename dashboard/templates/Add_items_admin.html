@@ -1,0 +1,1096 @@
+<!--<!DOCTYPE html>-->
+<!--{% load static %}-->
+<!--<html lang="en">-->
+
+<!--<head>-->
+<!--  &lt;!&ndash; Required meta tags &ndash;&gt;-->
+<!--  <meta charset="utf-8">-->
+<!--  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">-->
+<!--  <title>Amana Admin</title>-->
+<!--  &lt;!&ndash; base:css &ndash;&gt;-->
+<!--  <link rel="stylesheet" href="{% static 'vendors/typicons/typicons.css' %}">-->
+<!--  <link rel="stylesheet" href="{% static 'vendors/css/vendor.bundle.base.css' %}">-->
+<!--  &lt;!&ndash; endinject &ndash;&gt;-->
+<!--  &lt;!&ndash; plugin css for this page &ndash;&gt;-->
+<!--  &lt;!&ndash; End plugin css for this page &ndash;&gt;-->
+<!--  &lt;!&ndash; inject:css &ndash;&gt;-->
+<!--  <link rel="stylesheet" href="{% static 'css/vertical-layout-light/style.css' %}">-->
+<!--  &lt;!&ndash; endinject &ndash;&gt;-->
+<!--  <link rel="shortcut icon" href="{% static 'images/favicon.png' %}" />-->
+<!--</head>-->
+<!--<body>-->
+<!--&lt;!&ndash;  z&ndash;&gt;-->
+<!--  <div class="container-scroller" >-->
+<!--    &lt;!&ndash; partial:partials/_navbar.html &ndash;&gt;-->
+<!--    <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">-->
+<!--      <div class="navbar-brand-wrapper d-flex justify-content-center" style="background-color:white;">-->
+<!--        <div class="navbar-brand-inner-wrapper d-flex justify-content-between align-items-center w-100" >-->
+<!--          <a class="navbar-brand brand-logo" href="dashboard.html"><img src="{% static 'images/logo.png' %}" alt="logo"/></a>-->
+<!--          <a class="navbar-brand brand-logo-mini" href="dashboard.html"><img src="{% static 'images/logo-mini.svg' %}" alt="logo"/></a>-->
+<!--          <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize" style="background-color:grey;">-->
+<!--            <span class="typcn typcn-th-menu"></span>-->
+<!--          </button>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--      <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end" style="background-color:white;">-->
+<!--        <ul class="navbar-nav mr-lg-2">-->
+<!--          <li class="nav-item nav-profile dropdown">-->
+<!--            <a class="nav-link" href="#" data-toggle="dropdown" id="profileDropdown">-->
+<!--&lt;!&ndash;              <img src="{% static 'images/faces/face5.jpg' %}" alt="profile"/>&ndash;&gt;-->
+<!--              <span class="nav-profile-name">ADMIN</span>-->
+<!--            </a>-->
+<!--            <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">-->
+<!--              <a class="dropdown-item">-->
+<!--                <i class="typcn typcn-cog-outline text-primary"></i>-->
+<!--                Settings-->
+<!--              </a>-->
+<!--              <a class="dropdown-item">-->
+<!--                <i class="typcn typcn-eject text-primary"></i>-->
+<!--                Logout-->
+<!--              </a>-->
+<!--            </div>-->
+<!--          </li>-->
+<!--          <li class="nav-item nav-user-status dropdown">-->
+<!--              <p class="mb-0"></p>-->
+<!--          </li>-->
+<!--        </ul>-->
+<!--        <ul class="navbar-nav navbar-nav-right">-->
+<!--          <li class="nav-item nav-date dropdown">-->
+<!--    <a class="nav-link d-flex justify-content-center align-items-center" href="javascript:;">-->
+<!--        <h6 class="date mb-0" id="currentDateTime"></h6>-->
+<!--        <i class="typcn typcn-calendar"></i>-->
+<!--    </a>-->
+<!--         </li>-->
+
+<!--<script>-->
+<!--    function updateDateTime() {-->
+<!--        var currentDate = new Date();-->
+<!--        var options = { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric', hour12: true };-->
+<!--        var formattedDate = currentDate.toLocaleString('en-US', options);-->
+<!--        document.getElementById('currentDateTime').textContent = formattedDate;-->
+<!--    }-->
+
+<!--    // Update the date initially-->
+<!--    updateDateTime();-->
+
+<!--    // Update the date every second-->
+<!--    setInterval(updateDateTime, 1000);-->
+<!--</script>-->
+<!--&lt;!&ndash;          <li class="nav-item dropdown">&ndash;&gt;-->
+<!--&lt;!&ndash;            <a class="nav-link count-indicator dropdown-toggle d-flex justify-content-center align-items-center" id="messageDropdown" href="#" data-toggle="dropdown">&ndash;&gt;-->
+<!--&lt;!&ndash;              <i class="typcn typcn-cog-outline mx-0"></i>&ndash;&gt;-->
+<!--&lt;!&ndash;              <span class="count"></span>&ndash;&gt;-->
+<!--&lt;!&ndash;            </a>&ndash;&gt;-->
+<!--&lt;!&ndash;            <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="messageDropdown">&ndash;&gt;-->
+<!--&lt;!&ndash;              <p class="mb-0 font-weight-normal float-left dropdown-header">Messages</p>&ndash;&gt;-->
+<!--&lt;!&ndash;              <a class="dropdown-item preview-item">&ndash;&gt;-->
+<!--&lt;!&ndash;                <div class="preview-thumbnail">&ndash;&gt;-->
+<!--&lt;!&ndash;                    <img src="{% static 'images/faces/face4.jpg' %}" alt="image" class="profile-pic">&ndash;&gt;-->
+<!--&lt;!&ndash;                </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                <div class="preview-item-content flex-grow">&ndash;&gt;-->
+<!--&lt;!&ndash;                  <h6 class="preview-subject ellipsis font-weight-normal">David Grey&ndash;&gt;-->
+<!--&lt;!&ndash;                  </h6>&ndash;&gt;-->
+<!--&lt;!&ndash;                  <p class="font-weight-light small-text text-muted mb-0">&ndash;&gt;-->
+<!--&lt;!&ndash;                    The meeting is cancelled&ndash;&gt;-->
+<!--&lt;!&ndash;                  </p>&ndash;&gt;-->
+<!--&lt;!&ndash;                </div>&ndash;&gt;-->
+<!--&lt;!&ndash;              </a>&ndash;&gt;-->
+<!--&lt;!&ndash;              <a class="dropdown-item preview-item">&ndash;&gt;-->
+<!--&lt;!&ndash;                <div class="preview-thumbnail">&ndash;&gt;-->
+<!--&lt;!&ndash;                    <img src="{% static 'images/faces/face2.jpg' %}" alt="image" class="profile-pic">&ndash;&gt;-->
+<!--&lt;!&ndash;                </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                <div class="preview-item-content flex-grow">&ndash;&gt;-->
+<!--&lt;!&ndash;                  <h6 class="preview-subject ellipsis font-weight-normal">Tim Cook&ndash;&gt;-->
+<!--&lt;!&ndash;                  </h6>&ndash;&gt;-->
+<!--&lt;!&ndash;                  <p class="font-weight-light small-text text-muted mb-0">&ndash;&gt;-->
+<!--&lt;!&ndash;                    New product launch&ndash;&gt;-->
+<!--&lt;!&ndash;                  </p>&ndash;&gt;-->
+<!--&lt;!&ndash;                </div>&ndash;&gt;-->
+<!--&lt;!&ndash;              </a>&ndash;&gt;-->
+<!--&lt;!&ndash;              <a class="dropdown-item preview-item">&ndash;&gt;-->
+<!--&lt;!&ndash;                <div class="preview-thumbnail">&ndash;&gt;-->
+<!--&lt;!&ndash;                    <img src="{% static 'images/faces/face3.jpg' %}" alt="image" class="profile-pic">&ndash;&gt;-->
+<!--&lt;!&ndash;                </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                <div class="preview-item-content flex-grow">&ndash;&gt;-->
+<!--&lt;!&ndash;                  <h6 class="preview-subject ellipsis font-weight-normal"> Johnson&ndash;&gt;-->
+<!--&lt;!&ndash;                  </h6>&ndash;&gt;-->
+<!--&lt;!&ndash;                  <p class="font-weight-light small-text text-muted mb-0">&ndash;&gt;-->
+<!--&lt;!&ndash;                    Upcoming board meeting&ndash;&gt;-->
+<!--&lt;!&ndash;                  </p>&ndash;&gt;-->
+<!--&lt;!&ndash;                </div>&ndash;&gt;-->
+<!--&lt;!&ndash;              </a>&ndash;&gt;-->
+<!--&lt;!&ndash;            </div>&ndash;&gt;-->
+<!--&lt;!&ndash;          </li>&ndash;&gt;-->
+<!--&lt;!&ndash;          <li class="nav-item dropdown mr-0">&ndash;&gt;-->
+<!--&lt;!&ndash;            <a class="nav-link count-indicator dropdown-toggle d-flex align-items-center justify-content-center" id="notificationDropdown" href="#" data-toggle="dropdown">&ndash;&gt;-->
+<!--&lt;!&ndash;              <i class="typcn typcn-bell mx-0"></i>&ndash;&gt;-->
+<!--&lt;!&ndash;              <span class="count"></span>&ndash;&gt;-->
+<!--&lt;!&ndash;            </a>&ndash;&gt;-->
+<!--&lt;!&ndash;            <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="notificationDropdown">&ndash;&gt;-->
+<!--&lt;!&ndash;              <p class="mb-0 font-weight-normal float-left dropdown-header">Notifications</p>&ndash;&gt;-->
+<!--&lt;!&ndash;              <a class="dropdown-item preview-item">&ndash;&gt;-->
+<!--&lt;!&ndash;                <div class="preview-thumbnail">&ndash;&gt;-->
+<!--&lt;!&ndash;                  <div class="preview-icon bg-success">&ndash;&gt;-->
+<!--&lt;!&ndash;                    <i class="typcn typcn-info mx-0"></i>&ndash;&gt;-->
+<!--&lt;!&ndash;                  </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                <div class="preview-item-content">&ndash;&gt;-->
+<!--&lt;!&ndash;                  <h6 class="preview-subject font-weight-normal">Application Error</h6>&ndash;&gt;-->
+<!--&lt;!&ndash;                  <p class="font-weight-light small-text mb-0 text-muted">&ndash;&gt;-->
+<!--&lt;!&ndash;                    Just now&ndash;&gt;-->
+<!--&lt;!&ndash;                  </p>&ndash;&gt;-->
+<!--&lt;!&ndash;                </div>&ndash;&gt;-->
+<!--&lt;!&ndash;              </a>&ndash;&gt;-->
+<!--&lt;!&ndash;              <a class="dropdown-item preview-item">&ndash;&gt;-->
+<!--&lt;!&ndash;                <div class="preview-thumbnail">&ndash;&gt;-->
+<!--&lt;!&ndash;                  <div class="preview-icon bg-warning">&ndash;&gt;-->
+<!--&lt;!&ndash;                    <i class="typcn typcn-cog-outline mx-0"></i>&ndash;&gt;-->
+<!--&lt;!&ndash;                  </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                <div class="preview-item-content">&ndash;&gt;-->
+<!--&lt;!&ndash;                  <h6 class="preview-subject font-weight-normal">Settings</h6>&ndash;&gt;-->
+<!--&lt;!&ndash;                  <p class="font-weight-light small-text mb-0 text-muted">&ndash;&gt;-->
+<!--&lt;!&ndash;                    Private message&ndash;&gt;-->
+<!--&lt;!&ndash;                  </p>&ndash;&gt;-->
+<!--&lt;!&ndash;                </div>&ndash;&gt;-->
+<!--&lt;!&ndash;              </a>&ndash;&gt;-->
+<!--&lt;!&ndash;              <a class="dropdown-item preview-item">&ndash;&gt;-->
+<!--&lt;!&ndash;                <div class="preview-thumbnail">&ndash;&gt;-->
+<!--&lt;!&ndash;                  <div class="preview-icon bg-info">&ndash;&gt;-->
+<!--&lt;!&ndash;                    <i class="typcn typcn-user mx-0"></i>&ndash;&gt;-->
+<!--&lt;!&ndash;                  </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                <div class="preview-item-content">&ndash;&gt;-->
+<!--&lt;!&ndash;                  <h6 class="preview-subject font-weight-normal">New user registration</h6>&ndash;&gt;-->
+<!--&lt;!&ndash;                  <p class="font-weight-light small-text mb-0 text-muted">&ndash;&gt;-->
+<!--&lt;!&ndash;                    2 days ago&ndash;&gt;-->
+<!--&lt;!&ndash;                  </p>&ndash;&gt;-->
+<!--&lt;!&ndash;                </div>&ndash;&gt;-->
+<!--&lt;!&ndash;              </a>&ndash;&gt;-->
+<!--&lt;!&ndash;            </div>&ndash;&gt;-->
+<!--&lt;!&ndash;          </li>&ndash;&gt;-->
+<!--        </ul>-->
+<!--        <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">-->
+<!--          <span class="typcn typcn-th-menu"></span>-->
+<!--        </button>-->
+<!--      </div>-->
+<!--    </nav>-->
+<!--    &lt;!&ndash; partial &ndash;&gt;-->
+<!--    <nav class="navbar-breadcrumb col-xl-12 col-12 d-flex flex-row p-0">-->
+<!--      <div class="navbar-links-wrapper d-flex align-items-stretch">-->
+<!--        <div class="nav-link">-->
+<!--          <a href="javascript:;"><i class="typcn typcn-calendar-outline"></i></a>-->
+<!--        </div>-->
+<!--        <div class="nav-link">-->
+<!--          <a href="javascript:;"><i class="typcn typcn-mail"></i></a>-->
+<!--        </div>-->
+<!--        <div class="nav-link">-->
+<!--          <a href="javascript:;"><i class="typcn typcn-folder"></i></a>-->
+<!--        </div>-->
+<!--        <div class="nav-link">-->
+<!--          <a href="javascript:;"><i class="typcn typcn-document-text"></i></a>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--      <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">-->
+<!--        <ul class="navbar-nav mr-lg-2">-->
+<!--          <li class="nav-item ml-0">-->
+<!--            <h4 class="mb-0">Dashboard</h4>-->
+<!--          </li>-->
+<!--&lt;!&ndash;          <li class="nav-item">&ndash;&gt;-->
+<!--&lt;!&ndash;            <div class="d-flex align-items-baseline">&ndash;&gt;-->
+<!--&lt;!&ndash;              <p class="mb-0">Home</p>&ndash;&gt;-->
+<!--&lt;!&ndash;              <i class="typcn typcn-chevron-right"></i>&ndash;&gt;-->
+<!--&lt;!&ndash;              <p class="mb-0">Main Dahboard</p>&ndash;&gt;-->
+<!--&lt;!&ndash;            </div>&ndash;&gt;-->
+<!--&lt;!&ndash;          </li>&ndash;&gt;-->
+<!--        </ul>-->
+<!--        <ul class="navbar-nav navbar-nav-right">-->
+<!--          <li class="nav-item nav-search d-none d-md-block mr-0">-->
+<!--            <div class="input-group">-->
+<!--              <input type="text" class="form-control" placeholder="Search..." aria-label="search" aria-describedby="search">-->
+<!--              <div class="input-group-prepend">-->
+<!--                <span class="input-group-text" id="search">-->
+<!--                  <i class="typcn typcn-zoom"></i>-->
+<!--                </span>-->
+<!--              </div>-->
+<!--            </div>-->
+<!--          </li>-->
+<!--        </ul>-->
+<!--      </div>-->
+<!--    </nav>-->
+<!--    <div class="container-fluid page-body-wrapper">-->
+<!--      &lt;!&ndash; partial:partials/_settings-panel.html &ndash;&gt;-->
+<!--&lt;!&ndash;      <div class="theme-setting-wrapper">&ndash;&gt;-->
+<!--&lt;!&ndash;        <div id="settings-trigger"><i class="typcn typcn-cog-outline"></i></div>&ndash;&gt;-->
+<!--&lt;!&ndash;        <div id="theme-settings" class="settings-panel">&ndash;&gt;-->
+<!--&lt;!&ndash;          <i class="settings-close typcn typcn-times"></i>&ndash;&gt;-->
+<!--&lt;!&ndash;          <p class="settings-heading">SIDEBAR SKINS</p>&ndash;&gt;-->
+<!--&lt;!&ndash;          <div class="sidebar-bg-options selected" id="sidebar-light-theme"><div class="img-ss rounded-circle bg-light border mr-3"></div>Light</div>&ndash;&gt;-->
+<!--&lt;!&ndash;          <div class="sidebar-bg-options" id="sidebar-dark-theme"><div class="img-ss rounded-circle bg-dark border mr-3"></div>Dark</div>&ndash;&gt;-->
+<!--&lt;!&ndash;          <p class="settings-heading mt-2">HEADER SKINS</p>&ndash;&gt;-->
+<!--&lt;!&ndash;          <div class="color-tiles mx-0 px-4">&ndash;&gt;-->
+<!--&lt;!&ndash;            <div class="tiles success"></div>&ndash;&gt;-->
+<!--&lt;!&ndash;            <div class="tiles warning"></div>&ndash;&gt;-->
+<!--&lt;!&ndash;            <div class="tiles danger"></div>&ndash;&gt;-->
+<!--&lt;!&ndash;            <div class="tiles info"></div>&ndash;&gt;-->
+<!--&lt;!&ndash;            <div class="tiles dark"></div>&ndash;&gt;-->
+<!--&lt;!&ndash;            <div class="tiles default"></div>&ndash;&gt;-->
+<!--&lt;!&ndash;          </div>&ndash;&gt;-->
+<!--&lt;!&ndash;        </div>&ndash;&gt;-->
+<!--&lt;!&ndash;      </div>&ndash;&gt;-->
+<!--      <div id="right-sidebar" class="settings-panel">-->
+<!--        <i class="settings-close typcn typcn-times"></i>-->
+<!--        <ul class="nav nav-tabs" id="setting-panel" role="tablist">-->
+<!--          <li class="nav-item">-->
+<!--            <a class="nav-link active" id="todo-tab" data-toggle="tab" href="#todo-section" role="tab" aria-controls="todo-section" aria-expanded="true">TO DO LIST</a>-->
+<!--          </li>-->
+<!--          <li class="nav-item">-->
+<!--            <a class="nav-link" id="chats-tab" data-toggle="tab" href="#chats-section" role="tab" aria-controls="chats-section">CHATS</a>-->
+<!--          </li>-->
+<!--        </ul>-->
+<!--        <div class="tab-content" id="setting-content">-->
+<!--          <div class="tab-pane fade show active scroll-wrapper" id="todo-section" role="tabpanel" aria-labelledby="todo-section">-->
+<!--            <div class="add-items d-flex px-3 mb-0">-->
+<!--              <form class="form w-100">-->
+<!--                <div class="form-group d-flex">-->
+<!--                  <input type="text" class="form-control todo-list-input" placeholder="Add To-do">-->
+<!--                  <button type="submit" class="add btn btn-primary todo-list-add-btn" id="add-task">Add</button>-->
+<!--                </div>-->
+<!--              </form>-->
+<!--            </div>-->
+<!--            <div class="list-wrapper px-3">-->
+<!--              <ul class="d-flex flex-column-reverse todo-list">-->
+<!--                <li>-->
+<!--                  <div class="form-check">-->
+<!--                    <label class="form-check-label">-->
+<!--                      <input class="checkbox" type="checkbox">-->
+<!--                      Team review meeting at 3.00 PM-->
+<!--                    </label>-->
+<!--                  </div>-->
+<!--                  <i class="remove typcn typcn-delete-outline"></i>-->
+<!--                </li>-->
+<!--                <li>-->
+<!--                  <div class="form-check">-->
+<!--                    <label class="form-check-label">-->
+<!--                      <input class="checkbox" type="checkbox">-->
+<!--                      Prepare for presentation-->
+<!--                    </label>-->
+<!--                  </div>-->
+<!--                  <i class="remove typcn typcn-delete-outline"></i>-->
+<!--                </li>-->
+<!--                <li>-->
+<!--                  <div class="form-check">-->
+<!--                    <label class="form-check-label">-->
+<!--                      <input class="checkbox" type="checkbox">-->
+<!--                      Resolve all the low priority tickets due today-->
+<!--                    </label>-->
+<!--                  </div>-->
+<!--                  <i class="remove typcn typcn-delete-outline"></i>-->
+<!--                </li>-->
+<!--                <li class="completed">-->
+<!--                  <div class="form-check">-->
+<!--                    <label class="form-check-label">-->
+<!--                      <input class="checkbox" type="checkbox" checked>-->
+<!--                      Schedule meeting for next week-->
+<!--                    </label>-->
+<!--                  </div>-->
+<!--                  <i class="remove typcn typcn-delete-outline"></i>-->
+<!--                </li>-->
+<!--                <li class="completed">-->
+<!--                  <div class="form-check">-->
+<!--                    <label class="form-check-label">-->
+<!--                      <input class="checkbox" type="checkbox" checked>-->
+<!--                      Project review-->
+<!--                    </label>-->
+<!--                  </div>-->
+<!--                  <i class="remove typcn typcn-delete-outline"></i>-->
+<!--                </li>-->
+<!--              </ul>-->
+<!--            </div>-->
+<!--            <div class="events py-4 border-bottom px-3">-->
+<!--              <div class="wrapper d-flex mb-2">-->
+<!--                <i class="typcn typcn-media-record-outline text-primary mr-2"></i>-->
+<!--                <span>Feb 11 2018</span>-->
+<!--              </div>-->
+<!--              <p class="mb-0 font-weight-thin text-gray">Creating component page</p>-->
+<!--              <p class="text-gray mb-0">build a js based app</p>-->
+<!--            </div>-->
+<!--            <div class="events pt-4 px-3">-->
+<!--              <div class="wrapper d-flex mb-2">-->
+<!--                <i class="typcn typcn-media-record-outline text-primary mr-2"></i>-->
+<!--                <span>Feb 7 2018</span>-->
+<!--              </div>-->
+<!--              <p class="mb-0 font-weight-thin text-gray">Meeting with Alisa</p>-->
+<!--              <p class="text-gray mb-0 ">Call Sarah Graves</p>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--          &lt;!&ndash; To do section tab ends &ndash;&gt;-->
+<!--          <div class="tab-pane fade" id="chats-section" role="tabpanel" aria-labelledby="chats-section">-->
+<!--            <div class="d-flex align-items-center justify-content-between border-bottom">-->
+<!--              <p class="settings-heading border-top-0 mb-3 pl-3 pt-0 border-bottom-0 pb-0">Friends</p>-->
+<!--              <small class="settings-heading border-top-0 mb-3 pt-0 border-bottom-0 pb-0 pr-3 font-weight-normal">See All</small>-->
+<!--            </div>-->
+<!--            <ul class="chat-list">-->
+<!--              <li class="list active">-->
+<!--                <div class="profile"><img src="{% static 'images/faces/face1.jpg' %}" alt="image"><span class="online"></span></div>-->
+<!--                <div class="info">-->
+<!--                  <p>Thomas Douglas</p>-->
+<!--                  <p>Available</p>-->
+<!--                </div>-->
+<!--                <small class="text-muted my-auto">19 min</small>-->
+<!--              </li>-->
+<!--              <li class="list">-->
+<!--                <div class="profile"><img src="{% static 'images/faces/face2.jpg' %}" alt="image"><span class="offline"></span></div>-->
+<!--                <div class="info">-->
+<!--                  <div class="wrapper d-flex">-->
+<!--                    <p>Catherine</p>-->
+<!--                  </div>-->
+<!--                  <p>Away</p>-->
+<!--                </div>-->
+<!--                <div class="badge badge-success badge-pill my-auto mx-2">4</div>-->
+<!--                <small class="text-muted my-auto">23 min</small>-->
+<!--              </li>-->
+<!--              <li class="list">-->
+<!--                <div class="profile"><img src="{% static 'images/faces/face3.jpg' %}" alt="image"><span class="online"></span></div>-->
+<!--                <div class="info">-->
+<!--                  <p>Daniel Russell</p>-->
+<!--                  <p>Available</p>-->
+<!--                </div>-->
+<!--                <small class="text-muted my-auto">14 min</small>-->
+<!--              </li>-->
+<!--              <li class="list">-->
+<!--                <div class="profile"><img src="{% static 'images/faces/face4.jpg' %}" alt="image"><span class="offline"></span></div>-->
+<!--                <div class="info">-->
+<!--                  <p>James Richardson</p>-->
+<!--                  <p>Away</p>-->
+<!--                </div>-->
+<!--                <small class="text-muted my-auto">2 min</small>-->
+<!--              </li>-->
+<!--              <li class="list">-->
+<!--                <div class="profile"><img src="images/faces/face5.jpg" alt="image"><span class="online"></span></div>-->
+<!--                <div class="info">-->
+<!--                  <p>Madeline Kennedy</p>-->
+<!--                  <p>Available</p>-->
+<!--                </div>-->
+<!--                <small class="text-muted my-auto">5 min</small>-->
+<!--              </li>-->
+<!--              <li class="list">-->
+<!--                <div class="profile"><img src="{% static 'images/faces/face6.jpg' %}" alt="image"><span class="online"></span></div>-->
+<!--                <div class="info">-->
+<!--                  <p>Sarah Graves</p>-->
+<!--                  <p>Available</p>-->
+<!--                </div>-->
+<!--                <small class="text-muted my-auto">47 min</small>-->
+<!--              </li>-->
+<!--            </ul>-->
+<!--          </div>-->
+<!--          &lt;!&ndash; chat tab ends &ndash;&gt;-->
+<!--        </div>-->
+<!--      </div>-->
+<!--      &lt;!&ndash; partial &ndash;&gt;-->
+<!--      &lt;!&ndash; partial:partials/_sidebar.html &ndash;&gt;-->
+<!--      <nav class="sidebar sidebar-offcanvas" id="sidebar" style="height:140px;">-->
+<!--        <ul class="nav">-->
+<!--          <li class="nav-item">-->
+<!--            <a class="nav-link" href="{% url 'dashboard' %}">-->
+<!--              <i class="typcn typcn-device-desktop menu-icon"></i>-->
+<!--              <span class="menu-title">Dashboard</span>-->
+<!--            </a>-->
+<!--          </li>-->
+<!--          <li class="nav-item">-->
+<!--            <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">-->
+<!--              <i class="typcn typcn-document-text menu-icon"></i>-->
+<!--              <span class="menu-title">Customer</span>-->
+<!--              <i class="menu-arrow"></i>-->
+<!--            </a>-->
+<!--            <div class="collapse" id="ui-basic">-->
+<!--              <ul class="nav flex-column sub-menu">-->
+<!--                <li class="nav-item"> <a class="nav-link" href="{% url 'createcustomer' %}">Add Customer</a></li>-->
+<!--                <li class="nav-item"> <a class="nav-link" href="{% url 'customer_details' %}">Customer Details</a></li>-->
+<!--&lt;!&ndash;                <li class="nav-item"> <a class="nav-link" href="{% url 'customer_list' %}">Customer History</a></li>&ndash;&gt;-->
+<!--&lt;!&ndash;                <li class="nav-item"> <a class="nav-link" href="{% url 'order_details' %}">Order Details</a></li>&ndash;&gt;-->
+<!--&lt;!&ndash;                <li class="nav-item"> <a class="nav-link" href="pages/ui-features/dropdowns.html">Customer History</a></li>&ndash;&gt;-->
+<!--&lt;!&ndash;                <li class="nav-item"> <a class="nav-link" href="pages/ui-features/typography.html">Typography</a></li>&ndash;&gt;-->
+<!--              </ul>-->
+<!--            </div>-->
+<!--          </li>-->
+<!--&lt;!&ndash;          <li class="nav-item">&ndash;&gt;-->
+<!--&lt;!&ndash;            <a class="nav-link" data-toggle="collapse" href="#form-elements" aria-expanded="false" aria-controls="form-elements">&ndash;&gt;-->
+<!--&lt;!&ndash;              <i class="typcn typcn-film menu-icon"></i>&ndash;&gt;-->
+<!--&lt;!&ndash;              <span class="menu-title">Reception</span>&ndash;&gt;-->
+<!--&lt;!&ndash;              <i class="menu-arrow"></i>&ndash;&gt;-->
+<!--&lt;!&ndash;            </a>&ndash;&gt;-->
+<!--&lt;!&ndash;            <div class="collapse" id="form-elements">&ndash;&gt;-->
+<!--&lt;!&ndash;              <ul class="nav flex-column sub-menu">&ndash;&gt;-->
+<!--&lt;!&ndash;                <li class="nav-item"><a class="nav-link" href="pages/forms/basic_elements.html">View Items</a></li>&ndash;&gt;-->
+<!--&lt;!&ndash;              </ul>&ndash;&gt;-->
+<!--&lt;!&ndash;            </div>&ndash;&gt;-->
+<!--&lt;!&ndash;          </li>&ndash;&gt;-->
+<!--&lt;!&ndash;          <li class="nav-item">&ndash;&gt;-->
+<!--&lt;!&ndash;            <a class="nav-link" data-toggle="collapse" href="#charts" aria-expanded="false" aria-controls="charts">&ndash;&gt;-->
+<!--&lt;!&ndash;              <i class="typcn typcn-chart-pie-outline menu-icon"></i>&ndash;&gt;-->
+<!--&lt;!&ndash;              <span class="menu-title">Charts</span>&ndash;&gt;-->
+<!--&lt;!&ndash;              <i class="menu-arrow"></i>&ndash;&gt;-->
+<!--&lt;!&ndash;            </a>&ndash;&gt;-->
+<!--&lt;!&ndash;            <div class="collapse" id="charts">&ndash;&gt;-->
+<!--&lt;!&ndash;              <ul class="nav flex-column sub-menu">&ndash;&gt;-->
+<!--&lt;!&ndash;                <li class="nav-item"> <a class="nav-link" href="{% static 'pages/charts/chartjs.html' %}">ChartJs</a></li>&ndash;&gt;-->
+<!--&lt;!&ndash;              </ul>&ndash;&gt;-->
+<!--&lt;!&ndash;            </div>&ndash;&gt;-->
+<!--&lt;!&ndash;          </li>&ndash;&gt;-->
+<!--&lt;!&ndash;          <li class="nav-item">&ndash;&gt;-->
+<!--&lt;!&ndash;            <a class="nav-link" data-toggle="collapse" href="#tables" aria-expanded="false" aria-controls="tables">&ndash;&gt;-->
+<!--&lt;!&ndash;              <i class="typcn typcn-th-small-outline menu-icon"></i>&ndash;&gt;-->
+<!--&lt;!&ndash;              <span class="menu-title">Tables</span>&ndash;&gt;-->
+<!--&lt;!&ndash;              <i class="menu-arrow"></i>&ndash;&gt;-->
+<!--&lt;!&ndash;            </a>&ndash;&gt;-->
+<!--&lt;!&ndash;            <div class="collapse" id="tables">&ndash;&gt;-->
+<!--&lt;!&ndash;              <ul class="nav flex-column sub-menu">&ndash;&gt;-->
+<!--&lt;!&ndash;                <li class="nav-item"> <a class="nav-link" href="pages/tables/basic-table.html">Basic table</a></li>&ndash;&gt;-->
+<!--&lt;!&ndash;              </ul>&ndash;&gt;-->
+<!--&lt;!&ndash;            </div>&ndash;&gt;-->
+<!--&lt;!&ndash;          </li>&ndash;&gt;-->
+<!--&lt;!&ndash;          <li class="nav-item">&ndash;&gt;-->
+<!--&lt;!&ndash;            <a class="nav-link" data-toggle="collapse" href="#icons" aria-expanded="false" aria-controls="icons">&ndash;&gt;-->
+<!--&lt;!&ndash;              <i class="typcn typcn-compass menu-icon"></i>&ndash;&gt;-->
+<!--&lt;!&ndash;              <span class="menu-title">Icons</span>&ndash;&gt;-->
+<!--&lt;!&ndash;              <i class="menu-arrow"></i>&ndash;&gt;-->
+<!--&lt;!&ndash;            </a>&ndash;&gt;-->
+<!--&lt;!&ndash;            <div class="collapse" id="icons">&ndash;&gt;-->
+<!--&lt;!&ndash;              <ul class="nav flex-column sub-menu">&ndash;&gt;-->
+<!--&lt;!&ndash;                <li class="nav-item"> <a class="nav-link" href="pages/icons/mdi.html">Mdi icons</a></li>&ndash;&gt;-->
+<!--&lt;!&ndash;              </ul>&ndash;&gt;-->
+<!--&lt;!&ndash;            </div>&ndash;&gt;-->
+<!--&lt;!&ndash;          </li>&ndash;&gt;-->
+<!--           <li class="nav-item">-->
+<!--            <a class="nav-link" data-toggle="collapse" href="#auth" aria-expanded="false" aria-controls="auth">-->
+<!--              <i class="typcn typcn-user-add-outline menu-icon"></i>-->
+<!--              <span class="menu-title">Orders</span>-->
+<!--              <i class="menu-arrow"></i>-->
+<!--            </a>-->
+<!--            <div class="collapse" id="auth">-->
+<!--              <ul class="nav flex-column sub-menu">-->
+<!--                <li class="nav-item"> <a class="nav-link" href="{% url 'order_details' %}">Order Details</a></li>-->
+<!--                <li class="nav-item"> <a class="nav-link" href="pages/samples/register.html"> 404 </a></li>-->
+<!--              </ul>-->
+<!--            </div>-->
+<!--          </li>-->
+<!--          <li class="nav-item">-->
+<!--            <a class="nav-link" data-toggle="collapse" href="#error" aria-expanded="false" aria-controls="error">-->
+<!--              <i class="typcn typcn-globe-outline menu-icon"></i>-->
+<!--              <span class="menu-title">Tailors</span>-->
+<!--              <i class="menu-arrow"></i>-->
+<!--            </a>-->
+<!--            <div class="collapse" id="error">-->
+<!--              <ul class="nav flex-column sub-menu">-->
+<!--                <li class="nav-item"> <a class="nav-link" href="{% url 'addtailors' %}"> Add Tailors </a></li>-->
+<!--                <li class="nav-item"> <a class="nav-link" href="{% url 'view_tailors' %}"> View Tailors </a></li>-->
+<!--                <li class="nav-item"> <a class="nav-link" href="{% url 'select_dates' %}"> Tailor Appointments</a></li>-->
+
+<!--              </ul>-->
+<!--            </div>-->
+<!--          </li>-->
+<!--          <li class="nav-item">-->
+<!--            <a class="nav-link" data-toggle="collapse" href="#form-elements" aria-expanded="false" aria-controls="form-elements">-->
+<!--              <i class="typcn typcn-film menu-icon"></i>-->
+<!--              <span class="menu-title">Items</span>-->
+<!--              <i class="menu-arrow"></i>-->
+<!--            </a>-->
+<!--            <div class="collapse" id="form-elements">-->
+<!--              <ul class="nav flex-column sub-menu">-->
+<!--                <li class="nav-item"><a class="nav-link" href="#">View Items</a></li>-->
+<!--              </ul>-->
+<!--            </div>-->
+<!--          </li>-->
+<!--&lt;!&ndash;          <li class="nav-item">&ndash;&gt;-->
+<!--&lt;!&ndash;            <a class="nav-link" href="https://bootstrapdash.com/demo/polluxui-free/docs/documentation.html">&ndash;&gt;-->
+<!--&lt;!&ndash;              <i class="typcn typcn-mortar-board menu-icon"></i>&ndash;&gt;-->
+<!--&lt;!&ndash;              <span class="menu-title">Documentation</span>&ndash;&gt;-->
+<!--&lt;!&ndash;            </a>&ndash;&gt;-->
+<!--&lt;!&ndash;          </li>&ndash;&gt;-->
+<!--        </ul>-->
+<!--      </nav>-->
+
+
+
+<!--      &lt;!&ndash; partial &ndash;&gt;-->
+<!--    &lt;!&ndash; Bootstrap CSS &ndash;&gt;-->
+<!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">-->
+<!--    <div class="container form-container" style="margin-top:1px; overflow-y: auto; max-height: 654px;">-->
+<!--      <meta charset="UTF-8">-->
+<!--      <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+<!--      <title>Add Items</title>-->
+<!--      <script>-->
+<!--        function addMoreItem() {-->
+<!--          var itemsContainer = document.querySelector('#itemsContainer');-->
+<!--          var newItemRow = document.createElement('div');-->
+<!--          newItemRow.className = 'form-row align-items-center item-row';-->
+<!--          newItemRow.innerHTML = `-->
+<!--            <div class="col-sm-3">-->
+<!--              <label class="sr-only">Item Name</label>-->
+<!--              <input type="text" class="form-control mb-2" name="itemName[]" placeholder="Item Name">-->
+<!--            </div>-->
+<!--            <div class="col-sm-2">-->
+<!--              <label class="sr-only">Quantity</label>-->
+<!--              <input type="number" class="form-control mb-2" name="quantity[]" placeholder="Quantity" min="0" onchange="updateItemTotalPrice(this)">-->
+<!--            </div>-->
+<!--            <div class="col-sm-2">-->
+<!--              <label class="sr-only">Price</label>-->
+<!--              <input type="number" class="form-control mb-2" name="price[]" placeholder="Price" min="0" onchange="updateItemTotalPrice(this)">-->
+<!--            </div>-->
+<!--            <div class="col-sm-2">-->
+<!--              <label class="sr-only">Total Price</label>-->
+<!--              <span class="form-control mb-2 itemTotalPrice">0.00</span>-->
+<!--            </div>-->
+<!--            <div class="col-sm-3">-->
+<!--              <button type="button" class="btn btn-danger mb-2 btn-sm" onclick="removeItem(this)">Remove</button>-->
+<!--            </div>-->
+<!--          `;-->
+<!--          itemsContainer.appendChild(newItemRow);-->
+<!--        }-->
+
+<!--        function removeItem(button) {-->
+<!--          var itemRow = button.closest('.item-row');-->
+<!--          if (itemRow.parentElement.children.length > 1) {-->
+<!--            itemRow.remove();-->
+<!--            updateGrandTotal();-->
+<!--          }-->
+<!--        }-->
+
+<!--        function updateItemTotalPrice(element) {-->
+<!--          var itemRow = element.closest('.item-row');-->
+<!--          var quantityInput = itemRow.querySelector('[name="quantity[]"]');-->
+<!--          var priceInput = itemRow.querySelector('[name="price[]"]');-->
+<!--          var totalSpan = itemRow.querySelector('.itemTotalPrice');-->
+
+<!--          var quantity = parseInt(quantityInput.value) || 0;-->
+<!--          var price = parseFloat(priceInput.value) || 0;-->
+<!--          var total = quantity * price;-->
+
+<!--          totalSpan.innerText = total.toFixed(2);-->
+<!--          updateGrandTotal();-->
+<!--        }-->
+
+<!--        function updateGrandTotal() {-->
+<!--          var grandTotal = 0;-->
+<!--          var itemTotalElements = document.querySelectorAll('.itemTotalPrice');-->
+<!--          itemTotalElements.forEach(function (element) {-->
+<!--            grandTotal += parseFloat(element.innerText) || 0;-->
+<!--          });-->
+
+<!--          document.getElementById('grandTotal').innerText = grandTotal.toFixed(2);-->
+<!--        }-->
+
+<!--        function resetForm() {-->
+<!--          var itemInputs = document.querySelectorAll('.item-row input');-->
+<!--          itemInputs.forEach(function (input) {-->
+<!--            input.value = '';-->
+<!--          });-->
+
+<!--          var itemTotalElements = document.querySelectorAll('.itemTotalPrice');-->
+<!--          itemTotalElements.forEach(function (element) {-->
+<!--            element.innerText = '0.00';-->
+<!--          });-->
+
+<!--          document.getElementById('grandTotal').innerText = '0.00';-->
+<!--        }-->
+<!--      </script>-->
+<!--    </head>-->
+<!--    <body>-->
+<!--      <div class="container">-->
+<!--        <h5>Add Items</h5>-->
+<!--        <form action="{% url 'save_items' %}" method="post">-->
+<!--          {% csrf_token %}-->
+<!--          <div id="itemsContainer">-->
+<!--            <div>-->
+<!--              <label for="customerSelect"> Customer Name:</label>-->
+<!--              <input type="text" class="" name="customerName" value="{{itm.name}}">-->
+<!--            </div><br>-->
+<!--            &lt;!&ndash; Initial item row &ndash;&gt;-->
+<!--            <div class="form-row align-items-center item-row">-->
+<!--              <div class="col-sm-3">-->
+<!--                <label class="sr-only">Item Name</label>-->
+<!--                <input type="text" class="form-control mb-2" name="itemName[]" placeholder="Item Name">-->
+<!--              </div>-->
+<!--              <div class="col-sm-2">-->
+<!--                <label class="sr-only">Quantity</label>-->
+<!--                <input type="number" class="form-control mb-2" name="quantity[]" placeholder="Quantity" min="0" onchange="updateItemTotalPrice(this)">-->
+<!--              </div>-->
+<!--              <div class="col-sm-2">-->
+<!--                <label class="sr-only">Price</label>-->
+<!--                <input type="number" class="form-control mb-2" name="price[]" placeholder="Price" min="0" onchange="updateItemTotalPrice(this)">-->
+<!--              </div>-->
+<!--              <div class="col-sm-2">-->
+<!--                <label class="sr-only">Total Price</label>-->
+<!--                <span class="form-control mb-2 itemTotalPrice">0.00</span>-->
+<!--              </div>-->
+<!--              <div class="col-sm-3">-->
+<!--                <button type="button" class="btn btn-danger mb-2 btn-sm" onclick="removeItem(this)">Remove</button>-->
+<!--              </div>-->
+<!--            </div>-->
+<!--            &lt;!&ndash; End of initial item row &ndash;&gt;-->
+<!--          </div>-->
+<!--          <button type="button" class="btn btn-success mb-2" onclick="addMoreItem()">Add More</button>-->
+<!--          <div class="form-group">-->
+<!--            <label for="grandTotal">Grand Total:</label>-->
+<!--            <span id="grandTotal">0.00</span>-->
+<!--          </div>-->
+<!--          <button type="submit" class="btn btn-primary">Submit</button>-->
+<!--          <button type="button" class="btn btn-secondary" onclick="resetForm()">Reset</button>-->
+<!--        </form>-->
+<!--      </div>-->
+
+
+
+
+
+
+<!--&lt;!&ndash;&lt;!&ndash; Bootstrap JS and Popper.js &ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>&ndash;&gt;-->
+<!--&lt;!&ndash;<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>&ndash;&gt;-->
+<!--&lt;!&ndash;<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>&ndash;&gt;-->
+
+
+
+<!--&lt;!&ndash;          <div class="row">&ndash;&gt;-->
+<!--&lt;!&ndash;            <div class="col-xl-6 grid-margin stretch-card flex-column">&ndash;&gt;-->
+<!--&lt;!&ndash;                <h5 class="mb-2 text-titlecase mb-4">Status statistics</h5>&ndash;&gt;-->
+<!--&lt;!&ndash;              <div class="row">&ndash;&gt;-->
+<!--&lt;!&ndash;                <div class="col-md-6 grid-margin stretch-card">&ndash;&gt;-->
+<!--&lt;!&ndash;                  <div class="card">&ndash;&gt;-->
+<!--&lt;!&ndash;                    <div class="card-body d-flex flex-column justify-content-between">&ndash;&gt;-->
+<!--&lt;!&ndash;                      <div class="d-flex justify-content-between align-items-center mb-2">&ndash;&gt;-->
+<!--&lt;!&ndash;                        <p class="mb-0 text-muted">Transactions</p>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <p class="mb-0 text-muted">+1.37%</p>&ndash;&gt;-->
+<!--&lt;!&ndash;                      </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                      <h4>1352</h4>&ndash;&gt;-->
+<!--&lt;!&ndash;                      <canvas id="transactions-chart" class="mt-auto" height="65"></canvas>&ndash;&gt;-->
+<!--&lt;!&ndash;                    </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                  </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                <div class="col-md-6 grid-margin stretch-card">&ndash;&gt;-->
+<!--&lt;!&ndash;                  <div class="card">&ndash;&gt;-->
+<!--&lt;!&ndash;                    <div class="card-body d-flex flex-column justify-content-between">&ndash;&gt;-->
+<!--&lt;!&ndash;                      <div class="d-flex justify-content-between align-items-center mb-2">&ndash;&gt;-->
+<!--&lt;!&ndash;                        <div>&ndash;&gt;-->
+<!--&lt;!&ndash;                          <p class="mb-2 text-muted">Sales</p>&ndash;&gt;-->
+<!--&lt;!&ndash;                          <h6 class="mb-0">563</h6>&ndash;&gt;-->
+<!--&lt;!&ndash;                        </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <div>&ndash;&gt;-->
+<!--&lt;!&ndash;                          <p class="mb-2 text-muted">Orders</p>&ndash;&gt;-->
+<!--&lt;!&ndash;                          <h6 class="mb-0">720</h6>&ndash;&gt;-->
+<!--&lt;!&ndash;                        </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <div>&ndash;&gt;-->
+<!--&lt;!&ndash;                          <p class="mb-2 text-muted">Revenue</p>&ndash;&gt;-->
+<!--&lt;!&ndash;                          <h6 class="mb-0">5900</h6>&ndash;&gt;-->
+<!--&lt;!&ndash;                        </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                      </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                      <canvas id="sales-chart-a" class="mt-auto" height="65"></canvas>&ndash;&gt;-->
+<!--&lt;!&ndash;                    </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                  </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                </div>&ndash;&gt;-->
+<!--&lt;!&ndash;              </div>&ndash;&gt;-->
+<!--&lt;!&ndash;              <div class="row h-100">&ndash;&gt;-->
+<!--&lt;!&ndash;                <div class="col-md-6 stretch-card grid-margin grid-margin-md-0">&ndash;&gt;-->
+<!--&lt;!&ndash;                  <div class="card">&ndash;&gt;-->
+<!--&lt;!&ndash;                    <div class="card-body d-flex flex-column justify-content-between">&ndash;&gt;-->
+<!--&lt;!&ndash;                      <p class="text-muted">Sales Analytics</p>&ndash;&gt;-->
+<!--&lt;!&ndash;                      <div class="d-flex justify-content-between align-items-center mb-2">&ndash;&gt;-->
+<!--&lt;!&ndash;                        <h3 class="mb-">27632</h3>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <h3 class="mb-">78%</h3>&ndash;&gt;-->
+<!--&lt;!&ndash;                      </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                      <canvas id="sales-chart-b" class="mt-auto" height="38"></canvas>&ndash;&gt;-->
+<!--&lt;!&ndash;                    </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                  </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                <div class="col-md-6 stretch-card">&ndash;&gt;-->
+<!--&lt;!&ndash;                  <div class="card">&ndash;&gt;-->
+<!--&lt;!&ndash;                    <div class="card-body">&ndash;&gt;-->
+<!--&lt;!&ndash;                      <div class="row h-100">&ndash;&gt;-->
+<!--&lt;!&ndash;                        <div class="col-6 d-flex flex-column justify-content-between">&ndash;&gt;-->
+<!--&lt;!&ndash;                          <p class="text-muted">CPU</p>&ndash;&gt;-->
+<!--&lt;!&ndash;                          <h4>55%</h4>&ndash;&gt;-->
+<!--&lt;!&ndash;                          <canvas id="cpu-chart" class="mt-auto"></canvas>&ndash;&gt;-->
+<!--&lt;!&ndash;                        </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <div class="col-6 d-flex flex-column justify-content-between">&ndash;&gt;-->
+<!--&lt;!&ndash;                          <p class="text-muted">Memory</p>&ndash;&gt;-->
+<!--&lt;!&ndash;                          <h4>123,65</h4>&ndash;&gt;-->
+<!--&lt;!&ndash;                          <canvas id="memory-chart" class="mt-auto"></canvas>&ndash;&gt;-->
+<!--&lt;!&ndash;                        </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                      </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                    </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                  </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                </div>&ndash;&gt;-->
+<!--&lt;!&ndash;              </div>&ndash;&gt;-->
+<!--&lt;!&ndash;            </div>&ndash;&gt;-->
+<!--&lt;!&ndash;            <div class="col-xl-6 grid-margin stretch-card flex-column">&ndash;&gt;-->
+<!--&lt;!&ndash;              <h5 class="mb-2 text-titlecase mb-4">Income statistics</h5>&ndash;&gt;-->
+<!--&lt;!&ndash;              <div class="row h-100">&ndash;&gt;-->
+<!--&lt;!&ndash;                <div class="col-md-12 stretch-card">&ndash;&gt;-->
+<!--&lt;!&ndash;                  <div class="card">&ndash;&gt;-->
+<!--&lt;!&ndash;                    <div class="card-body">&ndash;&gt;-->
+<!--&lt;!&ndash;                      <div class="d-flex justify-content-between align-items-start flex-wrap">&ndash;&gt;-->
+<!--&lt;!&ndash;                        <div>&ndash;&gt;-->
+<!--&lt;!&ndash;                          <p class="mb-3">Monthly Increase</p>&ndash;&gt;-->
+<!--&lt;!&ndash;                          <h3>67842</h3>&ndash;&gt;-->
+<!--&lt;!&ndash;                        </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <div id="income-chart-legend" class="d-flex flex-wrap mt-1 mt-md-0"></div>&ndash;&gt;-->
+<!--&lt;!&ndash;                      </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                      <canvas id="income-chart"></canvas>&ndash;&gt;-->
+<!--&lt;!&ndash;                    </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                  </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                </div>&ndash;&gt;-->
+<!--&lt;!&ndash;              </div>&ndash;&gt;-->
+<!--&lt;!&ndash;            </div>&ndash;&gt;-->
+<!--&lt;!&ndash;          </div>&ndash;&gt;-->
+
+<!--&lt;!&ndash;          <div class="row">&ndash;&gt;-->
+<!--&lt;!&ndash;            <div class="col-xl-4 grid-margin stretch-card">&ndash;&gt;-->
+<!--&lt;!&ndash;              <div class="card">&ndash;&gt;-->
+<!--&lt;!&ndash;                <div class="card-body border-bottom">&ndash;&gt;-->
+<!--&lt;!&ndash;                  <div class="d-flex justify-content-between align-items-center flex-wrap">&ndash;&gt;-->
+<!--&lt;!&ndash;                    <h6 class="mb-2 mb-md-0 text-uppercase font-weight-medium">Overall sales</h6>&ndash;&gt;-->
+<!--&lt;!&ndash;                    <div class="dropdown">&ndash;&gt;-->
+<!--&lt;!&ndash;                      <button class="btn bg-white p-0 pb-1 text-muted btn-sm dropdown-toggle" type="button" id="dropdownMenuSizeButton3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">&ndash;&gt;-->
+<!--&lt;!&ndash;                          Last 30 days&ndash;&gt;-->
+<!--&lt;!&ndash;                      </button>&ndash;&gt;-->
+<!--&lt;!&ndash;                      <div class="dropdown-menu" aria-labelledby="dropdownMenuSizeButton3">&ndash;&gt;-->
+<!--&lt;!&ndash;                        <h6 class="dropdown-header">Settings</h6>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <a class="dropdown-item" href="javascript:;">Action</a>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <a class="dropdown-item" href="javascript:;">Another action</a>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <a class="dropdown-item" href="javascript:;">Something else here</a>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <div class="dropdown-divider"></div>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <a class="dropdown-item" href="javascript:;">Separated link</a>&ndash;&gt;-->
+<!--&lt;!&ndash;                      </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                    </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                  </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                <div class="card-body">&ndash;&gt;-->
+<!--&lt;!&ndash;                  <canvas id="sales-chart-c" class="mt-2"></canvas>&ndash;&gt;-->
+<!--&lt;!&ndash;                  <div class="d-flex align-items-center justify-content-between border-bottom pb-3 mb-3 mt-4">&ndash;&gt;-->
+<!--&lt;!&ndash;                    <div class="d-flex flex-column justify-content-center align-items-center">&ndash;&gt;-->
+<!--&lt;!&ndash;                      <p class="text-muted">Gross Sales</p>&ndash;&gt;-->
+<!--&lt;!&ndash;                      <h5>492</h5>&ndash;&gt;-->
+<!--&lt;!&ndash;                      <div class="d-flex align-items-baseline">&ndash;&gt;-->
+<!--&lt;!&ndash;                        <p class="text-success mb-0">0.5%</p>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <i class="typcn typcn-arrow-up-thick text-success"></i>&ndash;&gt;-->
+<!--&lt;!&ndash;                      </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                    </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                    <div class="d-flex flex-column justify-content-center align-items-center">&ndash;&gt;-->
+<!--&lt;!&ndash;                      <p class="text-muted">Purchases</p>&ndash;&gt;-->
+<!--&lt;!&ndash;                      <h5>87k</h5>&ndash;&gt;-->
+<!--&lt;!&ndash;                      <div class="d-flex align-items-baseline">&ndash;&gt;-->
+<!--&lt;!&ndash;                        <p class="text-success mb-0">0.8%</p>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <i class="typcn typcn-arrow-up-thick text-success"></i>&ndash;&gt;-->
+<!--&lt;!&ndash;                      </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                    </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                    <div class="d-flex flex-column justify-content-center align-items-center">&ndash;&gt;-->
+<!--&lt;!&ndash;                      <p class="text-muted">Tax Return</p>&ndash;&gt;-->
+<!--&lt;!&ndash;                      <h5>882</h5>&ndash;&gt;-->
+<!--&lt;!&ndash;                      <div class="d-flex align-items-baseline">&ndash;&gt;-->
+<!--&lt;!&ndash;                        <p class="text-danger mb-0">-04%</p>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <i class="typcn typcn-arrow-down-thick text-danger"></i>&ndash;&gt;-->
+<!--&lt;!&ndash;                      </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                    </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                  </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                  <div class="d-flex justify-content-between align-items-center">&ndash;&gt;-->
+<!--&lt;!&ndash;                    <div class="dropdown">&ndash;&gt;-->
+<!--&lt;!&ndash;                      <button class="btn bg-white p-0 pb-1 pt-1 text-muted btn-sm dropdown-toggle" type="button" id="dropdownMenuSizeButton3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">&ndash;&gt;-->
+<!--&lt;!&ndash;                          Last 7 days&ndash;&gt;-->
+<!--&lt;!&ndash;                      </button>&ndash;&gt;-->
+<!--&lt;!&ndash;                      <div class="dropdown-menu" aria-labelledby="dropdownMenuSizeButton3">&ndash;&gt;-->
+<!--&lt;!&ndash;                        <h6 class="dropdown-header">Settings</h6>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <a class="dropdown-item" href="javascript:;">Action</a>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <a class="dropdown-item" href="javascript:;">Another action</a>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <a class="dropdown-item" href="javascript:;">Something else here</a>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <div class="dropdown-divider"></div>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <a class="dropdown-item" href="javascript:;">Separated link</a>&ndash;&gt;-->
+<!--&lt;!&ndash;                      </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                    </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                    <p class="mb-0">overview</p>&ndash;&gt;-->
+<!--&lt;!&ndash;                  </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                </div>&ndash;&gt;-->
+<!--&lt;!&ndash;              </div>&ndash;&gt;-->
+<!--&lt;!&ndash;            </div>&ndash;&gt;-->
+<!--&lt;!&ndash;            <div class="col-md-6 col-xl-4 grid-margin stretch-card">&ndash;&gt;-->
+<!--&lt;!&ndash;              <div class="row">&ndash;&gt;-->
+<!--&lt;!&ndash;                <div class="col-md-12 grid-margin stretch-card">&ndash;&gt;-->
+<!--&lt;!&ndash;                  <div class="card newsletter-card bg-gradient-warning">&ndash;&gt;-->
+<!--&lt;!&ndash;                    <div class="card-body">&ndash;&gt;-->
+<!--&lt;!&ndash;                      <div class="d-flex flex-column align-items-center justify-content-center h-100">&ndash;&gt;-->
+<!--&lt;!&ndash;                        <h5 class="mb-3 text-white">Newsletter</h5>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <form class="form d-flex flex-column align-items-center justify-content-between w-100">&ndash;&gt;-->
+<!--&lt;!&ndash;                          <div class="form-group mb-2 w-100">&ndash;&gt;-->
+<!--&lt;!&ndash;                            <input type="text" class="form-control" placeholder="email address">&ndash;&gt;-->
+<!--&lt;!&ndash;                          </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                          <button class="btn btn-danger btn-rounded mt-1" type="submit">Subscribe</button>&ndash;&gt;-->
+<!--&lt;!&ndash;                        </form>&ndash;&gt;-->
+<!--&lt;!&ndash;                      </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                    </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                  </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                <div class="col-md-12 stretch-card">&ndash;&gt;-->
+<!--&lt;!&ndash;                  <div class="card profile-card bg-gradient-primary">&ndash;&gt;-->
+<!--&lt;!&ndash;                    <div class="card-body">&ndash;&gt;-->
+<!--&lt;!&ndash;                      <div class="row align-items-center h-100">&ndash;&gt;-->
+<!--&lt;!&ndash;                        <div class="col-md-4">&ndash;&gt;-->
+<!--&lt;!&ndash;                          <figure class="avatar mx-auto mb-4 mb-md-0">&ndash;&gt;-->
+<!--&lt;!&ndash;                            <img src="{% static 'images/faces/face20.jpg' %}" alt="avatar">&ndash;&gt;-->
+<!--&lt;!&ndash;                          </figure>&ndash;&gt;-->
+<!--&lt;!&ndash;                        </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <div class="col-md-8">&ndash;&gt;-->
+<!--&lt;!&ndash;                          <h5 class="text-white text-center text-md-left">Phoebe Kennedy</h5>&ndash;&gt;-->
+<!--&lt;!&ndash;                          <p class="text-white text-center text-md-left">kennedy@gmail.com</p>&ndash;&gt;-->
+<!--&lt;!&ndash;                          <div class="d-flex align-items-center justify-content-between info pt-2">&ndash;&gt;-->
+<!--&lt;!&ndash;                            <div>&ndash;&gt;-->
+<!--&lt;!&ndash;                              <p class="text-white font-weight-bold">Birth date</p>&ndash;&gt;-->
+<!--&lt;!&ndash;                              <p class="text-white font-weight-bold">Birth city</p>&ndash;&gt;-->
+<!--&lt;!&ndash;                            </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                            <div>&ndash;&gt;-->
+<!--&lt;!&ndash;                              <p class="text-white">16 Sep 2019</p>&ndash;&gt;-->
+<!--&lt;!&ndash;                              <p class="text-white">Netherlands</p>&ndash;&gt;-->
+<!--&lt;!&ndash;                            </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                          </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                        </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                      </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                    </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                  </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                </div>&ndash;&gt;-->
+<!--&lt;!&ndash;              </div>&ndash;&gt;-->
+<!--&lt;!&ndash;            </div>&ndash;&gt;-->
+<!--&lt;!&ndash;            <div class="col-md-6 col-xl-4 grid-margin stretch-card">&ndash;&gt;-->
+<!--&lt;!&ndash;              <div class="card">&ndash;&gt;-->
+<!--&lt;!&ndash;                <div class="card-body border-bottom">&ndash;&gt;-->
+<!--&lt;!&ndash;                  <div class="d-flex justify-content-between align-items-center flex-wrap">&ndash;&gt;-->
+<!--&lt;!&ndash;                    <h6 class="mb-2 mb-md-0 text-uppercase font-weight-medium">Sales statistics</h6>&ndash;&gt;-->
+<!--&lt;!&ndash;                    <div class="dropdown">&ndash;&gt;-->
+<!--&lt;!&ndash;                      <button class="btn bg-white p-0 pb-1 text-muted btn-sm dropdown-toggle" type="button" id="dropdownMenuSizeButton4" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">&ndash;&gt;-->
+<!--&lt;!&ndash;                          Last 7 days&ndash;&gt;-->
+<!--&lt;!&ndash;                      </button>&ndash;&gt;-->
+<!--&lt;!&ndash;                      <div class="dropdown-menu" aria-labelledby="dropdownMenuSizeButton4">&ndash;&gt;-->
+<!--&lt;!&ndash;                        <h6 class="dropdown-header">Settings</h6>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <a class="dropdown-item" href="javascript:;">Action</a>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <a class="dropdown-item" href="javascript:;">Another action</a>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <a class="dropdown-item" href="javascript:;">Something else here</a>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <div class="dropdown-divider"></div>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <a class="dropdown-item" href="javascript:;">Separated link</a>&ndash;&gt;-->
+<!--&lt;!&ndash;                      </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                    </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                  </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                <div class="card-body">&ndash;&gt;-->
+<!--&lt;!&ndash;                  <canvas id="sales-chart-d" height="320"></canvas>&ndash;&gt;-->
+<!--&lt;!&ndash;                </div>&ndash;&gt;-->
+<!--&lt;!&ndash;              </div>&ndash;&gt;-->
+<!--&lt;!&ndash;            </div>&ndash;&gt;-->
+<!--&lt;!&ndash;          </div>&ndash;&gt;-->
+
+<!--&lt;!&ndash;          <div class="row">&ndash;&gt;-->
+<!--&lt;!&ndash;            <div class="col-md-4 grid-margin stretch-card">&ndash;&gt;-->
+<!--&lt;!&ndash;              <div class="card">&ndash;&gt;-->
+<!--&lt;!&ndash;                <div class="card-body">&ndash;&gt;-->
+<!--&lt;!&ndash;                  <div class="d-flex align-items-center justify-content-between justify-content-md-center justify-content-xl-between flex-wrap mb-4">&ndash;&gt;-->
+<!--&lt;!&ndash;                    <div>&ndash;&gt;-->
+<!--&lt;!&ndash;                      <p class="mb-2 text-md-center text-lg-left">Total Customers</p>&ndash;&gt;-->
+<!--&lt;!&ndash;                      <h1 class="mb-0">8742</h1>&ndash;&gt;-->
+<!--&lt;!&ndash;                    </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                    <i class="typcn typcn-briefcase icon-xl text-secondary"></i>&ndash;&gt;-->
+<!--&lt;!&ndash;                  </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                  <canvas id="expense-chart" height="80"></canvas>&ndash;&gt;-->
+<!--&lt;!&ndash;                </div>&ndash;&gt;-->
+<!--&lt;!&ndash;              </div>&ndash;&gt;-->
+<!--&lt;!&ndash;            </div>&ndash;&gt;-->
+<!--&lt;!&ndash;            <div class="col-md-4 grid-margin stretch-card">&ndash;&gt;-->
+<!--&lt;!&ndash;              <div class="card">&ndash;&gt;-->
+<!--&lt;!&ndash;                <div class="card-body">&ndash;&gt;-->
+<!--&lt;!&ndash;                  <div class="d-flex align-items-center justify-content-between justify-content-md-center justify-content-xl-between flex-wrap mb-4">&ndash;&gt;-->
+<!--&lt;!&ndash;                    <div>&ndash;&gt;-->
+<!--&lt;!&ndash;                      <p class="mb-2 text-md-center text-lg-left">Total Tailors</p>&ndash;&gt;-->
+<!--&lt;!&ndash;                      <h1 class="mb-0">47,840</h1>&ndash;&gt;-->
+<!--&lt;!&ndash;                    </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                    <i class="typcn typcn-chart-pie icon-xl text-secondary"></i>&ndash;&gt;-->
+<!--&lt;!&ndash;                  </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                  <canvas id="budget-chart" height="80"></canvas>&ndash;&gt;-->
+<!--&lt;!&ndash;                </div>&ndash;&gt;-->
+<!--&lt;!&ndash;              </div>&ndash;&gt;-->
+<!--&lt;!&ndash;            </div>&ndash;&gt;-->
+<!--&lt;!&ndash;            <div class="col-md-4 grid-margin stretch-card">&ndash;&gt;-->
+<!--&lt;!&ndash;              <div class="card">&ndash;&gt;-->
+<!--&lt;!&ndash;                <div class="card-body">&ndash;&gt;-->
+<!--&lt;!&ndash;                  <div class="d-flex align-items-center justify-content-between justify-content-md-center justify-content-xl-between flex-wrap mb-4">&ndash;&gt;-->
+<!--&lt;!&ndash;                    <div>&ndash;&gt;-->
+<!--&lt;!&ndash;                      <p class="mb-2 text-md-center text-lg-left">Total Orders</p>&ndash;&gt;-->
+<!--&lt;!&ndash;                      <h1 class="mb-0">$7,243</h1>&ndash;&gt;-->
+<!--&lt;!&ndash;                    </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                    <i class="typcn typcn-clipboard icon-xl text-secondary"></i>&ndash;&gt;-->
+<!--&lt;!&ndash;                  </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                  <canvas id="balance-chart" height="80"></canvas>&ndash;&gt;-->
+<!--&lt;!&ndash;                </div>&ndash;&gt;-->
+<!--&lt;!&ndash;              </div>&ndash;&gt;-->
+<!--&lt;!&ndash;            </div>&ndash;&gt;-->
+<!--&lt;!&ndash;          </div>&ndash;&gt;-->
+
+<!--&lt;!&ndash;          <div class="row">&ndash;&gt;-->
+<!--&lt;!&ndash;            <div class="col-md-12">&ndash;&gt;-->
+<!--&lt;!&ndash;              <div class="card">&ndash;&gt;-->
+<!--&lt;!&ndash;                <div class="table-responsive pt-3">&ndash;&gt;-->
+<!--&lt;!&ndash;                  <table class="table table-striped project-orders-table">&ndash;&gt;-->
+<!--&lt;!&ndash;                    <thead>&ndash;&gt;-->
+<!--&lt;!&ndash;                      <tr>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <th class="ml-5">ID</th>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <th>Project name</th>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <th>Customer</th>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <th>Deadline</th>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <th>Payouts </th>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <th>Traffic</th>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <th>Actions</th>&ndash;&gt;-->
+<!--&lt;!&ndash;                      </tr>&ndash;&gt;-->
+<!--&lt;!&ndash;                    </thead>&ndash;&gt;-->
+<!--&lt;!&ndash;                    <tbody>&ndash;&gt;-->
+<!--&lt;!&ndash;                      <tr>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <td>#D1</td>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <td>Consectetur adipisicing elit </td>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <td>Beulah Cummings</td>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <td>03 Jan 2019</td>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <td>$ 5235</td>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <td>1.3K</td>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <td>&ndash;&gt;-->
+<!--&lt;!&ndash;                          <div class="d-flex align-items-center">&ndash;&gt;-->
+<!--&lt;!&ndash;                            <button type="button" class="btn btn-success btn-sm btn-icon-text mr-3">&ndash;&gt;-->
+<!--&lt;!&ndash;                              Edit&ndash;&gt;-->
+<!--&lt;!&ndash;                              <i class="typcn typcn-edit btn-icon-append"></i>&ndash;&gt;-->
+<!--&lt;!&ndash;                            </button>&ndash;&gt;-->
+<!--&lt;!&ndash;                            <button type="button" class="btn btn-danger btn-sm btn-icon-text">&ndash;&gt;-->
+<!--&lt;!&ndash;                              Delete&ndash;&gt;-->
+<!--&lt;!&ndash;                              <i class="typcn typcn-delete-outline btn-icon-append"></i>&ndash;&gt;-->
+<!--&lt;!&ndash;                            </button>&ndash;&gt;-->
+<!--&lt;!&ndash;                          </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                        </td>&ndash;&gt;-->
+<!--&lt;!&ndash;                      </tr>&ndash;&gt;-->
+<!--&lt;!&ndash;                      <tr>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <td>#D2</td>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <td>Correlation natural resources silo</td>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <td>Mitchel Dunford</td>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <td>09 Oct 2019</td>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <td>$ 3233</td>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <td>5.4K</td>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <td>&ndash;&gt;-->
+<!--&lt;!&ndash;                          <div class="d-flex align-items-center">&ndash;&gt;-->
+<!--&lt;!&ndash;                            <button type="button" class="btn btn-success btn-sm btn-icon-text mr-3">&ndash;&gt;-->
+<!--&lt;!&ndash;                              Edit&ndash;&gt;-->
+<!--&lt;!&ndash;                              <i class="typcn typcn-edit btn-icon-append"></i>&ndash;&gt;-->
+<!--&lt;!&ndash;                            </button>&ndash;&gt;-->
+<!--&lt;!&ndash;                            <button type="button" class="btn btn-danger btn-sm btn-icon-text">&ndash;&gt;-->
+<!--&lt;!&ndash;                              Delete&ndash;&gt;-->
+<!--&lt;!&ndash;                              <i class="typcn typcn-delete-outline btn-icon-append"></i>&ndash;&gt;-->
+<!--&lt;!&ndash;                            </button>&ndash;&gt;-->
+<!--&lt;!&ndash;                          </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                        </td>&ndash;&gt;-->
+<!--&lt;!&ndash;                      </tr>&ndash;&gt;-->
+<!--&lt;!&ndash;                      <tr>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <td>#D3</td>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <td>social capital compassion social</td>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <td>Pei Canaday</td>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <td>18 Jun 2019</td>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <td>$ 4311</td>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <td>2.1K</td>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <td>&ndash;&gt;-->
+<!--&lt;!&ndash;                          <div class="d-flex align-items-center">&ndash;&gt;-->
+<!--&lt;!&ndash;                            <button type="button" class="btn btn-success btn-sm btn-icon-text mr-3">&ndash;&gt;-->
+<!--&lt;!&ndash;                              Edit&ndash;&gt;-->
+<!--&lt;!&ndash;                              <i class="typcn typcn-edit btn-icon-append"></i>&ndash;&gt;-->
+<!--&lt;!&ndash;                            </button>&ndash;&gt;-->
+<!--&lt;!&ndash;                            <button type="button" class="btn btn-danger btn-sm btn-icon-text">&ndash;&gt;-->
+<!--&lt;!&ndash;                              Delete&ndash;&gt;-->
+<!--&lt;!&ndash;                              <i class="typcn typcn-delete-outline btn-icon-append"></i>&ndash;&gt;-->
+<!--&lt;!&ndash;                            </button>&ndash;&gt;-->
+<!--&lt;!&ndash;                          </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                        </td>&ndash;&gt;-->
+<!--&lt;!&ndash;                      </tr>&ndash;&gt;-->
+<!--&lt;!&ndash;                      <tr>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <td>#D4</td>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <td>empower communities thought</td>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <td>Gaynell Sharpton</td>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <td>23 Mar 2019</td>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <td>$ 7743</td>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <td>2.7K</td>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <td>&ndash;&gt;-->
+<!--&lt;!&ndash;                          <div class="d-flex align-items-center">&ndash;&gt;-->
+<!--&lt;!&ndash;                            <button type="button" class="btn btn-success btn-sm btn-icon-text mr-3">&ndash;&gt;-->
+<!--&lt;!&ndash;                              Edit&ndash;&gt;-->
+<!--&lt;!&ndash;                              <i class="typcn typcn-edit btn-icon-append"></i>&ndash;&gt;-->
+<!--&lt;!&ndash;                            </button>&ndash;&gt;-->
+<!--&lt;!&ndash;                            <button type="button" class="btn btn-danger btn-sm btn-icon-text">&ndash;&gt;-->
+<!--&lt;!&ndash;                              Delete&ndash;&gt;-->
+<!--&lt;!&ndash;                              <i class="typcn typcn-delete-outline btn-icon-append"></i>&ndash;&gt;-->
+<!--&lt;!&ndash;                            </button>&ndash;&gt;-->
+<!--&lt;!&ndash;                          </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                        </td>&ndash;&gt;-->
+<!--&lt;!&ndash;                      </tr>&ndash;&gt;-->
+<!--&lt;!&ndash;                      <tr>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <td>#D5</td>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <td> Targeted effective; mobilize </td>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <td>Audrie Midyett</td>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <td>22 Aug 2019</td>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <td>$ 2455</td>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <td>1.2K</td>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <td>&ndash;&gt;-->
+<!--&lt;!&ndash;                          <div class="d-flex align-items-center">&ndash;&gt;-->
+<!--&lt;!&ndash;                            <button type="button" class="btn btn-success btn-sm btn-icon-text mr-3">&ndash;&gt;-->
+<!--&lt;!&ndash;                              Edit&ndash;&gt;-->
+<!--&lt;!&ndash;                              <i class="typcn typcn-edit btn-icon-append"></i>&ndash;&gt;-->
+<!--&lt;!&ndash;                            </button>&ndash;&gt;-->
+<!--&lt;!&ndash;                            <button type="button" class="btn btn-danger btn-sm btn-icon-text">&ndash;&gt;-->
+<!--&lt;!&ndash;                              Delete&ndash;&gt;-->
+<!--&lt;!&ndash;                              <i class="typcn typcn-delete-outline btn-icon-append"></i>&ndash;&gt;-->
+<!--&lt;!&ndash;                            </button>&ndash;&gt;-->
+<!--&lt;!&ndash;                          </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                        </td>&ndash;&gt;-->
+<!--&lt;!&ndash;                      </tr>&ndash;&gt;-->
+<!--&lt;!&ndash;                    </tbody>&ndash;&gt;-->
+<!--&lt;!&ndash;                  </table>&ndash;&gt;-->
+<!--&lt;!&ndash;                </div>&ndash;&gt;-->
+<!--&lt;!&ndash;              </div>&ndash;&gt;-->
+<!--&lt;!&ndash;            </div>&ndash;&gt;-->
+<!--&lt;!&ndash;          </div>&ndash;&gt;-->
+
+<!--        </div>-->
+<!--        &lt;!&ndash; content-wrapper ends &ndash;&gt;-->
+<!--        &lt;!&ndash; partial:partials/_footer.html &ndash;&gt;-->
+<!--&lt;!&ndash;       <footer class="footer">&ndash;&gt;-->
+<!--&lt;!&ndash;            <div class="card">&ndash;&gt;-->
+<!--&lt;!&ndash;                <div class="card-body">&ndash;&gt;-->
+<!--&lt;!&ndash;                    <div class="d-sm-flex justify-content-center justify-content-sm-between">&ndash;&gt;-->
+<!--&lt;!&ndash;                        <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2024 <a href="https://www.bootstrapdash.com/" class="text-muted" target="_blank">&ndash;&gt;-->
+<!--&lt;!&ndash;                        <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center text-muted">&ndash;&gt;-->
+<!--&lt;!&ndash;                </div>&ndash;&gt;-->
+<!--&lt;!&ndash;            </div>&ndash;&gt;-->
+<!--&lt;!&ndash;            </div>&ndash;&gt;-->
+<!--&lt;!&ndash;        </footer>&ndash;&gt;-->
+<!--        &lt;!&ndash; partial &ndash;&gt;-->
+<!--      </div>-->
+<!--      &lt;!&ndash; main-panel ends &ndash;&gt;-->
+<!--    </div>-->
+<!--    &lt;!&ndash; page-body-wrapper ends &ndash;&gt;-->
+<!--  </div>-->
+<!--  &lt;!&ndash; container-scroller &ndash;&gt;-->
+
+<!--  &lt;!&ndash; base:js &ndash;&gt;-->
+<!--  <script src="{% static 'vendors/js/vendor.bundle.base.js' %}"></script>-->
+<!--  &lt;!&ndash; endinject &ndash;&gt;-->
+<!--  &lt;!&ndash; Plugin js for this page&ndash;&gt;-->
+<!--  <script src="{% static 'vendors/chart.js/Chart.min.js' %}"></script>-->
+<!--  &lt;!&ndash; End plugin js for this page&ndash;&gt;-->
+<!--  &lt;!&ndash; inject:js &ndash;&gt;-->
+<!--  <script src="{% static 'js/off-canvas.js' %}"></script>-->
+<!--  <script src="{% static 'js/hoverable-collapse.js' %}"></script>-->
+<!--  <script src="{% static 'js/template.js' %}"></script>-->
+<!--  <script src="{% static 'js/settings.js' %}"></script>-->
+<!--  <script src="{% static 'js/todolist.js' %}"></script>-->
+<!--  &lt;!&ndash; endinject &ndash;&gt;-->
+<!--  &lt;!&ndash; Custom js for this page&ndash;&gt;-->
+<!--  <script src="{% static 'js/dashboard.js' %}"></script>-->
+<!--  &lt;!&ndash; End custom js for this page&ndash;&gt;-->
+<!--</body>-->
+
+<!--</html>-->

@@ -1,0 +1,353 @@
+{% extends 'reception_dashboard.html' %}
+{% block content %}
+
+<style>
+    body {
+      background-color: #f8f9fa;
+    }
+
+    .form-container {
+      max-width: 100%;
+      margin: 35px auto;
+      padding: 20px;
+      background-color: #fff;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+<!--      margin-bottom: 100px;-->
+<!--      height: 1200px;-->
+      overflow-y: auto;
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    .button-container {
+        display: flex;
+        justify-content: center; /* Center items horizontally */
+        margin-top: 20px;
+    }
+
+    .button-container button {
+        margin: 0 10px; /* Add spacing between buttons */
+    }
+</style>
+<div class="container form-container " style="margin-top:1px;">
+
+    <form class="container " method="post" action="{% url 'savecustomer_recption' %}">
+        {% csrf_token %}
+        <h6 class="text-center"><u>Add User Details & Measurements</u></h6>
+        <div class="row">
+            <div class="col-md-6">
+                <!-- Left Side -->
+                <div class="form-group">
+                    <b><label for="name">Name:</label></b>
+                    <input type="text" class="form-control" id="name" placeholder="" required
+                           name="name">
+                </div>
+                <div class="form-group">
+                    <label for="number"><b>Mobile:</b></label>
+                    <input type="number" class="form-control" id="number" placeholder=""
+                           min="0" required
+                           name="mobile">
+                </div>
+                <div class="form-group">
+                    <b><label for="Cloth">Cloth Number:</label></b>
+                    <input type="text" class="form-control" id="Cloth" placeholder="" required
+                           name="Cloth">
+                </div>
+                <div class="form-group">
+                    <b><label for="name">Length:</label></b>
+                    <input type="number" class="form-control" id="length" placeholder="" required min="0"
+                           name="length">
+                </div>
+                <div class="form-group">
+                    <b><label for="shoulder">Shoulder:</label></b>
+                    <input type="number" class="form-control" id="shoulder" min="0" placeholder="" required
+                           name="shoulder">
+                </div>
+                <div class="form-group">
+                    <b><label>Sleeve:</label></b>
+                    <select class="form-control" style="border: 1px solid #ccc;" name="sleeve">
+                        <option>Select Sleev Model</option>
+                        <option>Half Sleev</option>
+                        <option>Full Sleev</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <b><label for="loose">Sleeve Length:</label></b>
+                    <input type="number" class="form-control" id="sleeve" min="0" placeholder="" required
+                           name="sleeve_length">
+                </div>
+
+                <div class="form-group">
+                    <b><label for="neck">Neck Round:</label></b>
+                    <input type="number" class="form-control" id="neck_round" placeholder="" required
+                           min="0" name="neck_round">
+                </div>
+                <div class="form-group">
+                    <b><label for="neck">Neck:</label></b>
+                    <input type="number" class="form-control" id="neck" placeholder=" " required min="0"
+                           name="neck">
+                </div>
+                <div class="form-group">
+                    <b><label for="collar">Collar:</label></b>
+                    <input type="number" class="form-control" id="collar" placeholder="" required min="0"
+                           name="collar">
+                </div>
+                <div class="form-group">
+                    <b><label for="regal">Regal:</label></b>
+
+                    <input type="number" class="form-control" id="regal" min="0" placeholder=" " required
+                           name="regal">
+                </div>
+                <div class="form-group">
+                    <b><label for="wrist">Wrist:</label></b>
+                    <input type="number" class="form-control" id="wrist" placeholder="" required min="0"
+                           name="wrist">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <!-- Right Side -->
+
+                <div class="form-group">
+                    <b> <label for="regal">Pocket Size:</label></b>
+                    <input type="number" class="form-control" id="pocket" min="0" placeholder=" " required
+                           name="pocket">
+                </div>
+                <div class="form-group">
+                    <b><label for="loose">Loose:</label></b>
+                    <input type="number" class="form-control" id="loose" min="0" placeholder="" required
+                           name="loose">
+                </div>
+                <div class="form-group">
+                    <b><label for="loose">Cuff Length:</label></b>
+                    <input type="number" class="form-control" id="cuff" min="0" placeholder=" " required
+                           name="cuff_length">
+                </div>
+                <div class="form-group">
+                    <b><label>Cuff Type:</label></b>
+                    <select class="form-control" style="border: 1px solid #ccc;" name="cuff_type">
+                        <option>Select Cuff Type</option>
+                        <option>Cuff</option>
+                        <option>Normal</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <b><label>Button Type:</label></b>
+                    <select class="form-control" style="border: 1px solid #ccc;" name="button_type">
+                        <option>Select Button Type</option>
+                        <option>Makfi</option>
+                        <option> Bayyin Makfi</option>
+                        <option>Zip Makfi</option>
+                        <option>Button Bayyin</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <b><label for="loose">Bottom :</label></b>
+                    <input type="number" class="form-control" id="bottom1" min="0" placeholder="" required
+                           name="bottom1">
+                </div>
+                <div class="form-group">
+                    <b></b><label for="loose">
+                    <script type="text/nonexistent"> Bottom 2</script>&nbsp;</label></b>
+                    <input type="number" class="form-control" id="bottom2" min="0" placeholder=" " required
+                           name="bottom2">
+                </div>
+                <div class="form-group">
+                    <b><label for="loose">Order Date:</label></b>
+                    <input type="text" class="form-control" id="oddate" placeholder="" required
+                           name="order_date">
+                </div>
+                <div class="form-group">
+                    <b><label for="delivery_date">Delivery Date:</label></b>
+                    <input type="date" class="form-control" id="dldate" min="0" placeholder=" " required
+                           name="delivery_date">
+
+                    {% if tailor_id %}
+                    <p>DEBUG: tailor_id={{ tailor_id }}</p>
+                    <p>DEBUG: dldate={{ dldate }}</p>
+                    <a href="{% url 'check_tailor_works_recption' %}?tailor_id={{ tailor_id }}&delivery_date={{ dldate }}"
+                       class="btn btn-primary">Check Works</a>
+                    {% endif %}
+                </div>
+                <script>
+                    // Get the current date
+                    var today = new Date();
+
+                    // Format the date as dd-mm-yyyy
+                    var dd = String(today.getDate()).padStart(2, '0');
+                    var mm = String(today.getMonth() + 1).padStart(2, '0'); // January is 0!
+                    var yyyy = today.getFullYear();
+
+                    // Set the value of the input field to the formatted date
+                    document.getElementById('oddate').value = dd + '-' + mm + '-' + yyyy;
+                </script>
+
+                <div class="form-group">
+                    <b><label for="tailor">Tailors:</label></b>
+                    <select class="form-control" style="border: 1px solid #ccc;" name="tailor"
+                            id="tailor-dropdown">
+                        <option>Select Tailor</option>
+                        {% for entry in tailor_works %}
+                        <option value="{{ entry.tailor.id }}">
+                            <div style="display: flex; justify-content: space-between; align-items: center;">
+                                <span style="font-weight: bold;"><b>{{ entry.tailor.tailor }}-</b></span>
+                                <span>Assigned: {{ entry.assigned_works }}, Pending: {{ entry.pending_works }}</span>
+                            </div>
+                        </option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="form-group">
+                    <b><label for="other">Other:</label></b>
+                    <textarea id="other" class="form-control" style=" border: 1px solid #ccc;height:124px"
+                              maxlength="10000"></textarea>
+                </div>
+                <div class="form-group">
+                    <label></label>
+                    <input type="hidden" id="billnum" name="">
+                </div>
+                <div class="button-container">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="button" class="btn btn-secondary btn-cancel">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $('#dldate').on('change', function () {
+            var selectedDate = $(this).val();
+
+            // Fetch tailor data based on selected date using AJAX
+            $.ajax({
+                url: '{% url "fetch_tailor_options_recption" %}',
+                method: 'GET',
+                data: { delivery_date: selectedDate },
+                success: function (data) {
+                    console.log("Received Data:", data);
+
+                    var dropdown = $('#tailor-dropdown');
+                    dropdown.empty().append('<option>Select Tailor</option>');
+
+                    // Populate options with fetched data
+                    $.each(data.tailor_options, function (index, tailor) {
+                        // Construct the option text including assigned and pending works
+                        var optionText = `${tailor.name} (Assigned: ${tailor.assigned_works}, Pending: ${tailor.pending_works})`;
+                        dropdown.append(`<option value="${tailor.id}">${optionText}</option>`);
+                    });
+                },
+                error: function (error) {
+                    console.error('Error fetching tailor data:', error);
+                }
+            });
+        });
+
+        // Update this part to handle form submission
+        $('form.container').on('submit', function (event) {
+            event.preventDefault();
+
+            // Serialize form data
+            var formData = $(this).serialize();
+
+            // Submit the form using AJAX
+            $.ajax({
+                url: '{% url "savecustomer_recption" %}',
+                method: 'POST',
+                data: formData,
+                success: function (response) {
+                    console.log("Form submitted successfully:", response);
+
+                    // Reload the page after a successful submission
+                    location.reload();
+                },
+                error: function (error) {
+                    console.error('Error submitting form:', error);
+
+                    // You can handle the error response here, e.g., display an error message
+                    alert("Tailor has a limit . Please try again.");
+                }
+            });
+        });
+    });
+        success: function (response) {
+    console.log("Form submitted successfully:", response);
+
+    // Display a manual SweetAlert
+    swal("Success!", "Customer added successfully", "success");
+
+    // Reload the page after a successful submission
+    location.reload();
+},
+
+    $(document).ready(function () {
+    $('form.container').on('submit', function (event) {
+        event.preventDefault();
+
+        // Serialize form data
+        var formData = $(this).serialize();
+
+        // Submit the form using AJAX
+        $.ajax({
+            url: '{% url "savecustomer_recption" %}',
+            method: 'POST',
+            data: formData,
+            success: function (response) {
+                console.log("Form submitted successfully:", response);
+
+                // Check if the response contains the 'error' key
+                if (response.error) {
+                    // Handle error case
+                    alert(response.error);
+                } else {
+                    // Display a success message
+                    swal("Success!", "Customer added successfully", "success");
+
+                    // Reload the page after a successful submission
+                    location.reload();
+                }
+            },
+            error: function (error) {
+                console.error('Error submitting form:', error);
+
+                // You can handle the error response here, e.g., display an error message
+                alert("There was an error submitting the form. Please try again.");
+            }
+        });
+    });
+});
+
+</script>
+
+
+</div>
+<!-- main-panel ends -->
+</div>
+<!-- page-body-wrapper ends -->
+</div>
+<!-- End custom js for this page-->
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<!--<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>-->
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+
+{% if messages %}
+    {% for i in messages %}
+        <script>
+            {% if i.tags == 'warning' %}
+                swal('{{ i }}', '', 'warning');
+            {% elif i.tags == 'error' %}
+                swal('{{ i }}', '', 'error');
+            {% elif i.tags == 'success' %}
+                swal('{{ i }}', '', 'success');
+            {% else %}
+                swal('{{ i }}', '', 'info');
+            {% endif %}
+        </script>
+    {% endfor %}
+{% endif %}
+{% endblock %}
+
